@@ -14,6 +14,7 @@
     </style>
 @endpush
 @section('content')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <section id="dataustad">
         <div class="container">
             <div class="row">
@@ -172,7 +173,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="{{ route('dataUstad-add') }}" method="POST">
+                                <form action="/dataustad-edit" method="POST" id="editForm">
                                     @csrf
                                     {{ method_field('PUT') }}
                                     <div class="modal-body">
@@ -240,7 +241,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" class="btn btn-primary">Update Data</button>
                                     </div>
                                 </form>
                             </div>

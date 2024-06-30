@@ -28,17 +28,17 @@
     <style>
         .navbar-brand {
             font-family: 'Assistant', sans-serif;
-            color: #078FB7;
+            color: #000000;
             font-size: 22px;
         }
 
         .nav-color a {
-            color: #078FB7;
+            color: #000000;
             text-decoration: none;
             font-family: 'Assistant', sans-serif;
             font-style: normal;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 22px;
         }
 
         .nav-color a:hover {
@@ -80,9 +80,9 @@
             <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm fixed-top">
                 <div class="container">
                     <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-                        <img src="/build/assets/LOGO-MU.png" alt="Logo" width="85" height="55"
+                        <img src="/build/assets/Logo Ar-rahmah.jpg" alt="Logo" width="65" height="55"
                             alt="logo">
-                        SIPS MISBAHUL ULUM
+                        SIPON AL-RAHMAH
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -98,8 +98,8 @@
                                     href="#beranda">Beranda</a></li>
                             <li class="nav-item ms-3"><a :class="(hash == '#visi-misi') ? 'active' : ''"
                                     href="#visi-misi">Visi Misi</a></li>
-                            <li class="nav-item ms-3"><a :class="(hash == '#gallery') ? 'active' : ''"
-                                    href="#gallery">Gallery</a></li>
+                            {{-- <li class="nav-item ms-3"><a :class="(hash == '#gallery') ? 'active' : ''"
+                                    href="#gallery">Gallery</a></li> --}}
                             <li class="nav-item ms-3"><a :class="(hash == '#sejarah') ? 'active' : ''"
                                     href="#sejarah">Sejarah</a></li>
                             <li class="nav-item ms-3"><a :class="(hash == '#kontak') ? 'active' : ''"
@@ -119,8 +119,8 @@
 
                                 <!-- @if (Route::has('register'))
     <li class="nav-item">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
     @endif -->
                             @else
                                 <li class="nav-item dropdown">

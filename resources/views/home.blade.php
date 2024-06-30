@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-12 mb-4 fs-3">
                                 <h3 class="fw-bold">Modern Islamic College Boarding School</h3>
-                                <h3 class="fw-bold">Pesantren modern Misbahul Ulum</h3>
+                                <h3 class="fw-bold">Pesantren modern Al-Rahmah</h3>
                             </div>
                             <div class="col-12 mt-5">
                                 <p class="mb-5 fs-5 fw-semibold">Berdiri diatas dan untuk semua golongan</p>
@@ -121,50 +121,33 @@
     {{-- section visi misi --}}
     <section id="visi-misi">
         <div class="container-fluid">
-            <h4 class="text-center mt-4">MISBAHUL ULUM</h4>
+            <h4 class="text-center mt-4 fw-bold">AL-RAHMAH</h4>
             <div class="background2 ">
                 <div class="mx-5">
                     <img src="/build/assets/Line.png" alt="iconl">
                     <h5 class="d-inline-block text-center mx-3 mt-4 text-white fw-bold ">What we do</h5>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-6 justify-content-center d-flex align-content-center">
                         <div class="card mt-5 text-black">
                             <img src="/build/assets/icon-pin.png" alt="iconl" width="50px" height="48px"
                                 class="mx-5 mt-4">
-                            <h3 class="fw-bold mx-5 mt-4">VISI</h3>
-                            <p class="m-5 fw-semibold fs-5 text-justify">Misbahul Ulum menjadi pusat pendidikan Islam
-                                yang melahirkan generasi muslim, mukmin yang
-                                shalih, konsisten dan berjiwa pejuang dalam
-                                usaha membumikan ajaran Islam,
-                                mampu menegakkan amar makruf nahi mungkar,
-                                menuju hidup bahagia dunia dan akhirat.</p>
-                        </div>
-
-                    </div>
-                    <div class="col-6 justify-content-center d-flex align-content-center">
-                        <div class="card mt-5 text-black">
-                            <img src="/build/assets/icon-clipboard.png" alt="iconl" width="50px" height="48px"
-                                class="mx-5 mt-4">
-                            <h3 class="fw-bold mx-5 mt-4">MISI</h3>
-                            <p class="m-5 fw-semibold fs-5 text-justify">1. Mendidik santri dengan bekal ajaran Islam
-                                yang meliputi aqidah, syariat dan akhlaq mulia
-                                sebagai syarat mutlak menuju umat terbaik
-                                (khair al-ummah).</p>
-                            <p class="mx-5 fw-semibold fs-5 text-justify">2. Menyiapkan santri dan lulusan yang mampu
-                                masuk ke pendidikan tinggi dalam berbagai
-                                disiplin ilmu, sehingga mereka memiliki
-                                kemampuan yang optimal untuk menjadi
-                                pemimpin masa depan.</p>
+                            <h3 class="fw-bold mx-5 mt-4">VISI & MISI</h3>
+                            <p class="m-5 fw-semibold fs-5 text-justify">Membentuk generasi Islam yang cerdas dan
+                                berkarakter
+                                rahmatan lil alamin, dan menjadi lembaga pendidikan yang merangkul para anak yatim dan kaum
+                                dhuafa.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         </div>
+        </div>
     </section>
     {{-- section gallery --}}
-    <section id="gallery">
+    {{-- <section id="gallery">
         <div class="container">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -183,14 +166,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('/build/assets/slide-1.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/build/assets/browsur pondok') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Perkuat Silaturahmi</h3>
                             <p> Direktur Pondok Modern Darussalam Gontor Kunjungi Misbahul Ulum.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/slide-2.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/build/assets/browsur pondok(1)') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>Santri Baru</h3>
                             <p>Suasana kedatangan Santri Baru Pesantren Modern Misbahul Ulum.</p>
@@ -238,65 +221,63 @@
                 </button>
             </div>
         </div>
-    </section>
+    </section> --}}
     {{-- section sejarah --}}
     <section id="sejarah">
         <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <div class="bg-sj-1 position-relative">
-                        <img class="mt-5 ms-4" height="480" width="300"
-                            src="{{ asset('/build/assets/sejarah1.png') }}" alt="">
-                        <img class="position-absolute bottom-0 end-0 mb-5 me-4"
-                            src="{{ asset('/build/assets/sejarah2.png') }}" height="480" width="300"
-                            alt="">
-                    </div>
-                </div>
                 <div class="col-6">
                     <div class="bg-sj-2 position-relative">
                         <div class="text-black position-absolute mt-5 ms-5">
                             <h3 class="fw-bold">SEJARAH</h3>
                             <h3 class="fw-bold">SEJARAH BERDIRINYA</h3>
                             <p class="fw-normal text-justify">
-                                <span>Pesantren Modern Misbahhul Ulum terletak di Desa Meuria
-                                    Paloh, Kecamatan
-                                    Muara Satu, Kota Lhokseumawe yang seratus persen penduduknya muslim, maka
-                                    tidak berlebihan apabila dikatakan ketertarikan masyarakatnya akan wawasan
-                                    keislaman amat tinggi.</span>
+                                <span>Pondok Pesantren Al-Rahmah berdiri Rabu,
+                                    11 Mei 2005 dengan peletakan batu pertama di sebuah lahan yang sekarang
+                                    merupakan lokasi berdirinya gedung Kuwait. Pondok ini berdiri awal mulanya diatas
+                                    tanah
+                                    pinjaman milik H. Yahya,
+                                    salah seorang warga kampung Lebakwangi.
+                                    Geliat kegiatan pendidikan dan pengajaran Pesantren al-Rahmah berjalan dengan segala
+                                    keterbatasan dana,
+                                    jumlah tenaga pengajar dan sarana dan prasarana.
+                                    Karena rata-rata peserta didik yang ada merupakan kalangan ekonomi lemah (yatim dan
+                                    duafa).
+                                    Dimulai pada tahun 2005 dengan jumlah santri 35 orang yang merupakan santri yatim
+                                    dan
+                                    dhu’afa ponpes al-Rahmah memulai kiprahnya.
+                                </span>
                                 <br>
                                 <br>
-                                <span> Hal ini dapat dilihat dari berdirinya beberapa lembaga pendidikan
-                                    Islam khas
-                                    pengajian di Aceh yang berbentuk Balai Pengajian ditambah lagi sebuah lembaga
-                                    yang lebih besar dan lebih berkonsentrasi pada pendidikan generasi muda
-                                    berbentuk dayah atau pesantren yang sudah berdiri sejak tahun 1987 yang
-                                    bernama Dayah Nurul Muhtadi Al-Aziziyah. Maka dicetuskanlah ide untuk
-                                    mendirikan lembaga pendidikan yang lebih formal, lebih modern dengan kurikulum
-                                    yang mencakup ilmu pengetahuan agama dan ilmu pengetahuan umum.</span>
+                                <span> Pada tahun 2010 Ust. Abdul Rasyid Muslim bertemu Ust Abdullah Saeed Baharmus.
+                                    Kunjungan pertamanya ditemani oleh KH. Ikhwan Hadiyin (pimpinan ponpes Daar El-Azhar
+                                    Rangkasbitung)
+                                    dan Ust Sa’du Suud, ahli bekam yang merupakan alumni Gontor. Ust. Sa’du Suud
+                                    beberapa kali berkunjung dan menginap di al-Rahmah, dan melalui lisan beliau Ust.
+                                    Abdullah Saeed Baharmus
+                                </span>
                                 <br>
                                 <br>
-                                <span> Tgk. H.M Thaib Mahmud selaku tokoh sentral bersama tokoh-tokoh lainnya mulai
-                                    mengupayakan berdirinya lembaga pendidikan formal tersebut hingga akhirnya
-                                    terwujudlah Madrasah Tsanawiyah (MTs) pada tahun 1989 yang disahkan oleh
-                                    Kementerian (Departemen) Agama Aceh Utara, Madrasah Tsanawiyah ini semula
-                                    belum berbentuk yayasan karena masih bersifat sangat terbatas, namun kemudian
-                                    setelah berbentuk yayasan dengan nama Yayasan Misbahul Ulum (YUM) Madrasah
-                                    Aliyah pun kemudian diwujudkan sebagai upaya mencerdaskan generasi
-                                    mendatang.</span>
+                                <span> Saat itu jumlah santri telah mencapai 280 an.
+                                    Tahun 2010 merupakan puncaknya kesulitan sekaligus terbukanya kemudahan bagi ponpes
+                                    al-Rahmah.
+                                    Dimulai dengan kedatangan Ust. Abdullah Saeed Baharmus, yang kemudian menjadi ketua
+                                    Badan Wakaf al-Rahmah.
+                                    Berkat Beliau, mulailah berdatangan bantuan dari negara-negara Timur Tengah
+                                    diantaranya
+                                    Saudi, dan Kuwait.
+                                    Pada tahun 2017 Ponpes Al-Rahmah ditetapkan menjadi Qoryah Kuwait al-Khairiyyah
+                                    (Kampung
+                                    Amal Kuwait).</span>
                                 <br>
                                 <br>
-                                <span> Setelah sukses mendirikan dua lembaga pendidikan tersebut, yang sekaligus pula
-                                    sebagai cikal bakal Pesantren Modern Misbahul Ulum, dengan semangat
-                                    mengkristal di dalam dada, atas ide dan dukungan dari Putra Desa Paloh
-                                    Prof. Dr. H.M. Hasballah Thaib, MA dimulai lah peletakan batu pertama pendirian
-                                    sebuah Pesantren pada tanggal 26 Oktober 1992 oleh T.Djohan (ketika itu
-                                    menjabat Wakil Gubernur Aceh) dengan dihadiri oleh berbagai tokoh dan pejabat
-                                    daerah pada masa tersebut.</span>
-                                <br>
-                                <br>
-                                <span> Pesantren Modern Misbahul Ulum pun resmi membuka pendaftaran santri dan
-                                    santriyah perdana pada tanggal 12 Juli 1993 / 22 Muharram 1414 H dengan jumlah
-                                    santri sebanyak 34 orang.</span>
+                                <span>Pondok Pesantren al-Rahmah yang berada di Walantaka, Lebak Wangi, Kota Serang,
+                                    Provinsi
+                                    Banten.
+                                    Pada tahun ajaran 2023/2024 pesantren ini memiliki santri dan santriwati mencapai
+                                    1.300
+                                    orang yang
+                                    terbagi pada jenjang Madrasah Tsanawiyah (MTS) dan Madrasah Aliyah (MA).</span>
                             </p>
                         </div>
                     </div>
@@ -312,17 +293,21 @@
                     <div class="col-6 justify-content-center d-flex align-content-center">
                         <div class="card mt-5 text-white">
                             <h4 class="mt-2 fw-bold text-center">CONTACT</h4>
-                            <p class="mt-5 ms-5 fw-normal text-justify">Yayasan Misbahul Ulum
+                            <p class="mt-5 ms-5 fw-normal text-justify">
+                                Jl Ciruas - Petir Lebakwangi -
                                 <br>
-                                Jl Tgk. Chik Di Paloh Simp. IV Meuria Paloh -
+                                Walantaka Kota Serang -
                                 <br>
-                                Kec. Muara Satu - Kota Lhokseumawe -
+                                Banten - Indonesia
                                 <br>
-                                Aceh Utara - Indonesia 123456
                                 <br>
-                                HP: 0852 6164 0111 - 0821 6693 3978
+                                HP:
                                 <br>
-                                Email: info@misbahululum.ac.id
+                                Ust. Wahyudin, S.Pd.I : 085216100194
+                                <br>
+                                Ust. Tedi Hartadi : 089651854068
+                                <br>
+                                Usth. Harisah Jamilah : 08888145972
                             </p>
                         </div>
                     </div>
@@ -332,18 +317,15 @@
                             <form class="row g-3 ms-2 me-2 mt-1 mb-1">
                                 <div class="col-md-6">
                                     <label for="inputname" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="inputname"
-                                        placeholder="masukkan nama">
+                                    <input type="text" class="form-control" id="inputname" placeholder="masukkan nama">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputemail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputemail"
-                                        placeholder="masukkan email">
+                                    <input type="email" class="form-control" id="inputemail" placeholder="masukkan email">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputalamat" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="inputalamat"
-                                        placeholder="jalan/desa">
+                                    <input type="text" class="form-control" id="inputalamat" placeholder="jalan/desa">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputfeedback">Feedback</label>
@@ -367,16 +349,17 @@
             </div>
         </div>
     </section>
+
     {{-- section footer --}}
     <section id="footer">
         <div class="container-fluid">
             <div class="bg-footer">
                 <div class="row">
                     <div class="col-4 justify-content-center d-flex align-content-center">
-                        <div class="mt-3 text-black text-center">
+                        {{-- <div class="mt-3 text-black text-center">
                             <img src="{{ asset('/build/assets/map.png') }}" alt="">
                             <h5 class="fw-bold mt-2">Denah Lokasi</h5>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-4 justify-content-center d-flex align-content-center">
                         <div class=" text-center text-black m-3">
@@ -396,16 +379,11 @@
                                 <path
                                     d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
                             </svg>
-                            <h5 class="fw-bold mt-4">@Copyright2022ByRMRF</h5>
+                            <h5 class="fw-bold mt-4">@Copyright-by.Licht-2024</h5>
                         </div>
                     </div>
                     <div class="col-4 justify-content-center d-flex align-content-center">
                         <div class="mt-5 text-white text-center">
-                            <div class="card">
-                                <h5 class="fw-bold mt-2">Kunjungi Website resmi></h5>
-                                <a href="http://misbahululum.ac.id
-                            ">Klik disini</a>
-                            </div>
                         </div>
                     </div>
                 </div>
