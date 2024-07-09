@@ -43,6 +43,14 @@ Route::post('/pelaporan-add', [\App\Http\Controllers\PerizinanController::class,
 
 Route::get('/pelanggaran', [\App\Http\Controllers\PelanggaranController::class, 'index'])->name('pelanggaran');
 
+Route::get('/hafalan', [\App\Http\Controllers\HafalanController::class, 'index'])->name('hafalan');
+Route::post('/hafalan-add', [\App\Http\Controllers\HafalanController::class, 'store'])->name('hafalanAdd');
+Route::put('/hafalan-update', [\App\Http\Controllers\HafalanController::class, 'update'])->name('hafalanUpdate');
+
+Route::get('/report', [\App\Http\Controllers\ReportController::class, 'index'])->name('report');
+Route::get('/report-data/{id}', [\App\Http\Controllers\ReportController::class, 'report'])->name('reportData');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/prilaku', [App\Http\Controllers\ReportController::class, 'index'])->name('prilaku');
