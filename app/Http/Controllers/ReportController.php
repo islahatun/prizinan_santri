@@ -13,6 +13,10 @@ class ReportController extends Controller
     public function index(){
 
         $santri = Santri::get();
+        if(Auth::user()->role_id == '3'){
+            $santri = Santri::get();
+        }
+
         return view('report.index', ['santri' => $santri]);
     }
     public function report($id){

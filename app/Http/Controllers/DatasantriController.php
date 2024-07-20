@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\Santri;
+use App\Models\User;
 
 class DatasantriController extends Controller
 {
     public function index()
     {
         $santricount = Santri::count();
-        $santri = Santri::get();
-        return view('datasantri.index', ['santri' => $santri, 'santricount' => $santricount,]);
+        $santri = Santri::with('perizinan','user')->get();
+        $user   = User::where('role_id',3)->get();
+        return view('datasantri.index', ['santri' => $santri, 'santricount' => $santricount,'user'=>$user]);
     }
 
     public function store(Request $request)

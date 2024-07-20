@@ -13,4 +13,8 @@ class Santri extends Model
     {
         return $this->hasMany(Perizinan::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class,'orang_tua','id');
+    }
 }

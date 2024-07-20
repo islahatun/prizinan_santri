@@ -16,6 +16,7 @@
 @section('content')
     {{-- cdnlink --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <section id="datasantri">
         <div class="container">
             <div class="row">
@@ -73,6 +74,7 @@
                                 <th scope="col">NO HP</th>
                                 <th scope="col">STATUS</th>
                                 <th scope="col">AKSI</th>
+                                <th scope="col">ID WALI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,9 +89,10 @@
                                     <td>{{ $item->tempat_lahir }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->kelas }}</td>
-                                    <td>{{ $item->orang_tua }}</td>
+                                    <td>{{ $item->user?$item->user->name:"" }}</td>
                                     <td>{{ $item->no_telepon }}</td>
                                     <td>{{ $item->status }}</td>
+                                    <td>{{ $item->orang_tua }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                     </td>
@@ -99,7 +102,7 @@
                     </table>
 
                     <!-- Modal tambah data -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade modalUser" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -151,8 +154,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Orang tua</label>
-                                            <input type="text" name="orang_tua" class="form-control"
-                                                placeholder="Masukkan nama orang tua">
+                                            {{-- <input type="text" name="orang_tua" class="form-control"
+                                                placeholder="Masukkan nama orang tua"> --}}
+                                                <select name="orang_tua" class="form-control orang_tua">
+                                                    <option value=""></option>
+                                                    @foreach ($user as $u )
+                                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nomor Telepon</label>
@@ -184,7 +193,7 @@
 
 
                     <!-- Modal edit data -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade modalUser" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -238,8 +247,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Orang tua</label>
-                                            <input type="text" name="orang_tua" id="orang_tua" class="form-control"
-                                                placeholder="Masukkan nama orang tua">
+                                            {{-- <input type="text" name="orang_tua" id="orang_tua" class="form-control"
+                                                placeholder="Masukkan nama orang tua"> --}}
+                                                <select name="orang_tua" id="orang_tua" class="form-control orang_tua">
+                                                    <option value=""></option>
+                                                    @foreach ($user as $u )
+                                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nomor Telepon</label>
@@ -274,7 +289,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
+    $('.orang_tua').select2({
+                dropdownParent: $('.modalUser'),
+                width: "100%"
+            });
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({
                 columnDefs: [{
@@ -301,6 +321,10 @@
                     target: 11,
                     visible: false,
                     searchable: false,
+                },{
+                    target: 12,
+                    visible: false,
+                    searchable: false,
                 }, ],
             });
 
@@ -323,7 +347,7 @@
                 $('#tempat_lahir').val(data[6]);
                 $('#alamat').val(data[7]);
                 $('#kelas').val(data[8]);
-                $('#orang_tua').val(data[9]);
+                $('#orang_tua').val(data[12]);
                 $('#no_telepon').val(data[10]);
                 $('#status').val(data[11]);
                 $('#editForm').attr('action', '/datasantri-edit');
