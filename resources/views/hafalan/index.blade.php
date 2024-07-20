@@ -62,7 +62,7 @@
                                 <th scope="col">NO</th>
                                 <th scope="col">NISN</th>
                                 <th scope="col">NAMA</th>
-                                <th scope="col">JUZ</th>
+                                <th scope="col">SURAT</th>
                                 <th scope="col">TANGGAL TES</th>
                                 <th scope="col">TAJWID</th>
                                 <th scope="col">MAKHROJ</th>
@@ -71,6 +71,7 @@
                                 <th scope="col">id</th>
                                 <th scope="col">ustadzid</th>
                                 <th scope="col">studentid</th>
+                                <th scope="col">suratid</th>
                                 <th scope="col">AKSI</th>
                             </tr>
                         </thead>
@@ -80,7 +81,7 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->santri->nisn }}</td>
                                     <td>{{ $item->santri->nama }}</td>
-                                    <td>{{ $item->juz_id }}</td>
+                                    <td>{{ $item->surat?$item->surat->name:"" }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->tajwid }}</td>
                                     <td>{{ $item->makhroj }}</td>
@@ -89,6 +90,7 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->ustadz_id }}</td>
                                     <td>{{ $item->santri_id }}</td>
+                                    <td>{{ $item->surat_id }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                     </td>
@@ -285,6 +287,11 @@
                     target: 11,
                     visible: false,
                     searchable: false,
+                },
+                {
+                    target: 12,
+                    visible: false,
+                    searchable: false,
                 }
             ]
 
@@ -311,7 +318,7 @@
                 var data = table.row($tr).data();
                 $('#id').val(data[9]);
                 $('#santri_id').val(data[11]);
-                $('#surat_id').val(data[3]);
+                $('#surat_id').val(data[12]);
                 $('#tanggal').val(data[4]);
                 $('#tajwid').val(data[5]);
                 $('#makhroj').val(data[6]);
