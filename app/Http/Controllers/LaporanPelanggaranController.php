@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Laporan_pelanggaran;
+use App\Models\User;
+use App\Models\Santri;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
+use App\Models\Laporan_pelanggaran;
 
 class LaporanPelanggaranController extends Controller
 {
@@ -14,7 +17,11 @@ class LaporanPelanggaranController extends Controller
      */
     public function index()
     {
-        //
+        $pelanggarancount = Perizinan::where('keterangan', '=', 'Tidak Tepat Waktu')->count();
+        $user = User::all();
+        $santri = Santri::all();
+        $perizinan = Perizinan::get();
+        return view('pelanggaran.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,]);
     }
 
     /**

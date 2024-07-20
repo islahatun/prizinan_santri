@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Perilaku extends Model
 {
     use HasFactory;
+    protected $guarded =['id'];
 }

@@ -96,7 +96,7 @@ class HafalanController extends Controller
     {
         $this->validate($request, [
             'nisn' => 'required',
-            'juz_id' => 'required',
+            'surat_id' => 'required',
             'tanggal' => 'required',
             'nilai' => 'required',
             'tajwid' => 'required',

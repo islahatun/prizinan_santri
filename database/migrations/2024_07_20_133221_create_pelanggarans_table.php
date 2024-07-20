@@ -15,6 +15,8 @@ class CreatePelanggaransTable extends Migration
     {
         Schema::create('pelanggarans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pelanggaran');
+            $table->integer('skor_pelanggaran');
             $table->timestamps();
         });
     }

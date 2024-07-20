@@ -15,6 +15,13 @@ class CreatePerilakusTable extends Migration
     {
         Schema::create('perilakus', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_santri');
+            $table->integer('nilai_sosialisasi');
+            $table->integer('nilai_jujur');
+            $table->integer('nilai_rajin');
+            $table->integer('nilai_bersih');
+            $table->integer('nilai_sopan_santun');
+            $table->integer('nilai_istikomah');
             $table->timestamps();
         });
     }

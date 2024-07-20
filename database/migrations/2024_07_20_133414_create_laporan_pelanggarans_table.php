@@ -15,6 +15,10 @@ class CreateLaporanPelanggaransTable extends Migration
     {
         Schema::create('laporan_pelanggarans', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_pelanggaran');
+            $table->date('tanggal');
+            $table->integer('id_santri');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
