@@ -53,7 +53,7 @@
                 </div>
                 <div class="mt-3" style="max-width: 100%">
                     <h3 class="text-center">DATA USTADZ</h3>
-                    <table class="table table-bordered border-dark">
+                    <table class="table table-bordered border-dark" id="tabel1">
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
@@ -61,6 +61,13 @@
                                 <th scope="col">NO HP</th>
                                 <th scope="col">ALAMAT</th>
                                 <th scope="col">JABATAN</th>
+                                <th scope="col">JENIS KELAMIN</th>
+                                <th scope="col">USERNAME</th>
+                                <th scope="col">TANGGAL LAHIR </th>
+                                <th scope="col">TEMPAT LAHIR </th>
+                                <th scope="col">EMAIL VERIFIKASI </th>
+                                <th scope="col">EMAIL </th>
+                                <th scope="col">id </th>
                                 <th scope="col">AKSI</th>
                             </tr>
                         </thead>
@@ -72,6 +79,13 @@
                                     <td>{{ $item->no_telepon }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->jabatan }}</td>
+                                    <td>{{ $item->jenis_kelamin }}</td>
+                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
+                                    <td>{{ $item->tgl_lahir }}</td>
+                                    <td>{{ $item->tempat_lahir }}</td>
+                                    <td>{{ $item->user ? $item->user->email_verified_at : '' }}</td>
+                                    <td>{{ $item->user ? $item->user->email : '' }}</td>
+                                    <td>{{ $item->id}}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                     </td>
@@ -252,4 +266,79 @@
             </div>
         </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.orang_tua').select2({
+            dropdownParent: $('.modalUser'),
+            width: "100%"
+        });
+        $(document).ready(function() {
+            var table = $('#tabel1').DataTable({
+                columnDefs: [{
+                    target: 6,
+                    visible: false,
+                    searchable: false,
+                }, {
+                    target: 7,
+                    visible: false,
+                    searchable: false,
+                }, {
+                    target: 8,
+                    visible: false,
+                    searchable: false,
+                }, {
+                    target: 5,
+                    visible: false,
+                    searchable: false,
+                },
+                {
+                    target: 9,
+                    visible: false,
+                    searchable: false,
+                },
+                {
+                    target: 10,
+                    visible: false,
+                    searchable: false,
+                },
+                {
+                    target: 11,
+                    visible: false,
+                    searchable: false,
+                },
+             ],
+            });
+
+            // start edit record
+
+            table.on('click', '.edit', function() {
+
+                $tr = $(this).closest('tr');
+                if ($($tr).hasClass('child')) {
+                    $tr = $tr.prev('.parent');
+                }
+
+                var data = table.row($tr).data();
+                console.log(data);
+                $('#id').val(data[11]);
+                $('#jenis_kelamin').val(data[5]);
+                $('#tgl_lahir').val(data[7]);
+                $('#tempat_lahir').val(data[8]);
+                $('#alamat').val(data[3]);
+                $('#jabatan').val(data[6]);
+                $('#email').val(data[10]);
+                $('#email_verified_at').val(data[9]);
+                $('#no_telepon').val(data[2]);
+                $('#name').val(data[6]);
+                $('#nama').val(data[1]);
+                $('#editForm').attr('action', '/dataustad-edit');
+                $('#editModal').modal('show');
+            });
+        });
+    </script>
 @endsection
