@@ -98,7 +98,7 @@
                     </table>
 
                     <!-- Modal tambah data -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade form_modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -122,8 +122,15 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Juz</label>
-                                            <input type="number" name="juz_id" class="form-control">
+                                            <label for="">SURAT</label>
+                                            {{-- <input type="number" name="juz_id" class="form-control"> --}}
+                                            <select class="form-select surat_id" name="surat_id"
+                                            aria-label="Default select example">
+                                            <option selected>Pilih Surat</option>
+                                            @foreach ($surah as $s )
+                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tanggal Tes</label>
@@ -172,7 +179,7 @@
 
 
                     <!-- Modal edit data -->
-                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade form_modal" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -198,8 +205,15 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Juz</label>
-                                            <input id="juz_id" type="number" name="juz_id" class="form-control">
+                                            <label for="">SURAT</label>
+                                            {{-- <input id="surat_id" type="number" name="surat_id" class="form-control"> --}}
+                                            <select class="form-select surat_id" name="surat_id" id="surat_id"
+                                            aria-label="Default select example">
+                                            <option selected>Pilih Nisn</option>
+                                            @foreach ($surah as $s )
+                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                            @endforeach
+                                        </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tanggal Tes</label>
@@ -284,6 +298,7 @@
                 width: "100%"
             });
 
+
             // start edit record
 
             table.on('click', '.edit', function() {
@@ -296,7 +311,7 @@
                 var data = table.row($tr).data();
                 $('#id').val(data[9]);
                 $('#santri_id').val(data[11]);
-                $('#juz_id').val(data[3]);
+                $('#surat_id').val(data[3]);
                 $('#tanggal').val(data[4]);
                 $('#tajwid').val(data[5]);
                 $('#makhroj').val(data[6]);

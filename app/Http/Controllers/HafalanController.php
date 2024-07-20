@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hafalan;
 use App\Models\Santri;
+use App\Models\surah;
 use App\Models\Ustad;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -21,9 +22,10 @@ class HafalanController extends Controller
 
         $hafalan = Hafalan::get();
         $santri = Santri::get();
+        $surah  = surah::get();
         $ustadz = Ustad::get();
         $count = Hafalan::count();
-        return view('hafalan.index', ['hafalan' => $hafalan,'hafalancount'=>$count,'ustadz' => $ustadz,'santri' => $santri]);
+        return view('hafalan.index', ['hafalan' => $hafalan,'hafalancount'=>$count,'ustadz' => $ustadz,'santri' => $santri,'surah' => $surah]);
     }
 
     /**
@@ -103,7 +105,7 @@ class HafalanController extends Controller
 
         ]);
         $data = $request->except('_token','_method','id');
-        
+
         Hafalan::where('id',$request->id)->update($data);
 
         return redirect('/hafalan')->with('success', ' Data Berhasil DiPerbaharui ');

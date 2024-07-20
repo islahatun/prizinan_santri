@@ -18,7 +18,7 @@ class CreateHafalansTable extends Migration
             $table->string('santri_id');
             $table->integer('nilai');
             $table->date('tanggal');
-            $table->integer('juz_id');
+            $table->integer('surah_id');
             $table->integer('tajwid');
             $table->integer('makhroj');
             $table->foreignId('ustadz_id');
