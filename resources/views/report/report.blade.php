@@ -35,6 +35,9 @@
                 <td><img src="{!! public_path('build/assets/Logo Ar-rahmah.jpg') !!}" alt="" height="90px" width="90px"></td>
                 <td style="align-content: center">
                     <p> SIPON Al-RAHMAH</p>
+                    <p style="text-align: center">Jl Ciruas - Petir Lebakwangi - Walantaka Kota Serang -
+                        Banten - Indonesia
+                        </p>
                 </td>
             </tr>
         </table>
@@ -89,6 +92,9 @@
                     <td><img src="{!! public_path('build/assets/Logo Ar-rahmah.jpg') !!}" alt="" height="90px" width="90px"></td>
                     <td style="align-content: center">
                         <p> SIPON Al-RAHMAH</p>
+                        <p style="text-align: center">Jl Ciruas - Petir Lebakwangi - Walantaka Kota Serang -
+                            Banten - Indonesia
+                            </p>
                     </td>
                 </tr>
             </table>
@@ -120,6 +126,9 @@
                     <td><img src="{!! public_path('build/assets/Logo Ar-rahmah.jpg') !!}" alt="" height="90px" width="90px"></td>
                     <td style="align-content: center">
                         <p> SIPON Al-RAHMAH</p>
+                        <p style="text-align: center">Jl Ciruas - Petir Lebakwangi - Walantaka Kota Serang -
+                            Banten - Indonesia
+                            </p>
                     </td>
                 </tr>
             </table>
