@@ -34,6 +34,10 @@ Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])
 Route::post('/profile-add', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile-add');
 Route::put('/profile-edit', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile-edit');
 
+Route::get('/dataAdmin', [App\Http\Controllers\AdminController::class, 'index'])->name('dataAdmin');
+Route::post('/dataAdmin-add', [App\Http\Controllers\AdminController::class, 'store'])->name('dataAdmin-add');
+Route::put('/dataAdmin-edit', [App\Http\Controllers\AdminController::class, 'update'])->name('dataAdmin-edit');
+
 Route::get('/dataustad', [\App\Http\Controllers\DataustadController::class, 'index'])->name('dataUstad');
 Route::post('/dataustad-add', [\App\Http\Controllers\DataustadController::class, 'store'])->name('dataUstad-add');
 Route::put('/dataustad-edit', [\App\Http\Controllers\DataustadController::class, 'update'])->name('dataUstad-edit');
