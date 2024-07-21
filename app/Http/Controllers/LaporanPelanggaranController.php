@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Santri;
 use App\Models\Perizinan;
+use App\Models\pelanggaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Laporan_pelanggaran;
+use Illuminate\Support\Facades\Session;
 
 class LaporanPelanggaranController extends Controller
 {
@@ -17,11 +20,12 @@ class LaporanPelanggaranController extends Controller
      */
     public function index()
     {
-        $pelanggarancount = Perizinan::where('keterangan', '=', 'Tidak Tepat Waktu')->count();
+        $pelanggarancount = Laporan_pelanggaran::count();
         $user = User::all();
         $santri = Santri::all();
-        $perizinan = Perizinan::get();
-        return view('pelanggaran.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,]);
+        $mpelanggaran= pelanggaran::all();
+        $pelanggaran = Laporan_pelanggaran::get();
+        return view('pelanggaran.PelanggaranSantri', ['pelanggaran' => $pelanggaran,'mpelanggaran'=>$mpelanggaran, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,]);
     }
 
     /**
@@ -42,7 +46,18 @@ class LaporanPelanggaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            Laporan_pelanggaran::create($request->all());
+
+            DB::commit();
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/pelanggaranSantri');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+        }
     }
 
     /**
@@ -74,9 +89,20 @@ class LaporanPelanggaranController extends Controller
      * @param  \App\Models\Laporan_pelanggaran  $laporan_pelanggaran
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Laporan_pelanggaran $laporan_pelanggaran)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_pelanggaran' => 'required',
+            'tanggal' => 'required',
+            'id_santri' => 'required',
+            'keterangan' => 'required',
+
+        ]);
+        $data = $request->except('_token','_method','id');
+
+        Laporan_pelanggaran::where('id',$request->id)->update($data);
+
+        return redirect('/pelanggaranSantri')->with('success', ' Data Berhasil DiPerbaharui ');
     }
 
     /**
