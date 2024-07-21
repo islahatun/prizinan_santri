@@ -16,9 +16,8 @@ class ReportController extends Controller
 
         $santri = Santri::get();
         if(Auth::user()->role_id == '3'){
-            $santri = Santri::get();
+            $santri = Santri::where('orang_tua',Auth::user()->id)->get();
         }
-
         return view('report.index', ['santri' => $santri]);
     }
     public function report($id){
