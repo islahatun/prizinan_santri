@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Santri;
 use App\Models\Perilaku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PerilakuController extends Controller
 {
@@ -14,7 +18,11 @@ class PerilakuController extends Controller
      */
     public function index()
     {
-        //
+        $perilakuCount = Perilaku::count();
+        $user = User::all();
+        $santri = Santri::all();
+        $perilaku = Perilaku::get();
+        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,]);
     }
 
     /**
@@ -35,7 +43,18 @@ class PerilakuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            Perilaku::create($request->all());
+
+            DB::commit();
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/perilaku');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+        }
     }
 
     /**
@@ -67,9 +86,22 @@ class PerilakuController extends Controller
      * @param  \App\Models\Perilaku  $perilaku
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perilaku $perilaku)
+    public function update(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'id_santri' => 'required',
+            'nilai_jujur' => 'required',
+            'nilai_rajin' => 'required',
+            'nilai_bersih' => 'required',
+            'nilai_sopan_santun' => 'required',
+            'nilai_istikomah' => 'required',
+        ]);
+        $data = $request->except('_token','_method','id');
+
+        Perilaku::where('id',$request->id)->update($data);
+
+        return redirect('/perilaku')->with('success', ' Data Berhasil DiPerbaharui ');
     }
 
     /**

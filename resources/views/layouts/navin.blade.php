@@ -289,8 +289,8 @@
                                     </a>
                                 </li>
 
-                                <li class="list-group-item {{ request()->is('prilaku') ? 'active' : '' }}">
-                                    <a href="{{ route('prilaku') }}"
+                                <li class="list-group-item {{ request()->is('perilaku') ? 'active' : '' }}">
+                                    <a href="{{ route('perilaku') }}"
                                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">

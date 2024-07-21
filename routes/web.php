@@ -53,6 +53,10 @@ Route::get('/hafalan', [\App\Http\Controllers\HafalanController::class, 'index']
 Route::post('/hafalan-add', [\App\Http\Controllers\HafalanController::class, 'store'])->name('hafalanAdd');
 Route::put('/hafalan-update', [\App\Http\Controllers\HafalanController::class, 'update'])->name('hafalanUpdate');
 
+Route::get('/perilaku', [\App\Http\Controllers\PerilakuController::class, 'index'])->name('perilaku');
+Route::post('/perilaku-add', [\App\Http\Controllers\PerilakuController::class, 'store'])->name('perilakuAdd');
+Route::put('/perilaku-update', [\App\Http\Controllers\PerilakuController::class, 'update'])->name('perilakuUpdate');
+
 Route::get('/report', [\App\Http\Controllers\ReportController::class, 'index'])->name('report');
 Route::get('/report-data/{id}', [\App\Http\Controllers\ReportController::class, 'report'])->name('reportData');
 

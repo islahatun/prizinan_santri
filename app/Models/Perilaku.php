@@ -9,4 +9,8 @@ class Perilaku extends Model
 {
     use HasFactory;
     protected $guarded =['id'];
+
+    public function santri(){
+        return $this->belongsTo(Santri::class,'id_santri','id');
+    }
 }
