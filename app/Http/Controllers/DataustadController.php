@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ustad;
 use App\Models\User;
+use App\Models\Ustad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DataustadController extends Controller
 {
@@ -87,7 +88,7 @@ class DataustadController extends Controller
             "name" => $request->input('name'),
         "email" => $request->input('email'),
         "email_verified_at" => $request->input('email_verified_at'),
-        "password" => $request->input('password'),
+        "password" => Hash::make($request->input('password')),
         ];
 
         User::where('ustad_id',$request->id)->update($data);

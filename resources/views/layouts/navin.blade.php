@@ -160,6 +160,19 @@
                                         <span class="fs-5 d-none d-sm-inline ms-4">HOME</span>
                                     </a>
                                 </li>
+                                <li class="list-group-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a href="{{ route('profile') }}"
+                                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path
+                                                d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+                                        </svg>
+                                        <span class="fs-5 d-none d-sm-inline ms-4">PROFILE</span>
+                                    </a>
+                                </li>
                                 <li class="list-group-item {{ request()->is('datasantri') ? 'active' : '' }}">
                                     <a href="{{ route('dataSantri') }}"
                                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
@@ -171,6 +184,21 @@
                                                 d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
                                         </svg>
                                         <span class="fs-5 d-none d-sm-inline ms-4">DATA SANTRI</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item {{ request()->is('pelanggaran') ? 'active' : '' }}">
+                                    <a href="{{ route('pelanggaran') }}"
+                                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-clipboard2-x" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
+                                            <path
+                                                d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
+                                            <path
+                                                d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293Z" />
+                                        </svg>
+                                        <span class="fs-5 d-none d-sm-inline ms-4">MASTER PELANGGARAN</span>
                                     </a>
                                 </li>
                                 <li class="list-group-item {{ request()->is('dataadmin') ? 'active' : '' }}">
@@ -288,7 +316,19 @@
                                         <span class="fs-5 d-none d-sm-inline ms-4">HOME</span>
                                     </a>
                                 </li>
-
+                                <li class="list-group-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a href="{{ route('profile') }}"
+                                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path
+                                                d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+                                        </svg>
+                                        <span class="fs-5 d-none d-sm-inline ms-4">PROFILE</span>
+                                    </a>
+                                </li>
                                 <li class="list-group-item {{ request()->is('perilaku') ? 'active' : '' }}">
                                     <a href="{{ route('perilaku') }}"
                                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
@@ -304,21 +344,7 @@
                                         <span class="fs-5 d-none d-sm-inline ms-4">PRILAKU</span>
                                     </a>
                                 </li>
-                                <li class="list-group-item {{ request()->is('pelanggaran') ? 'active' : '' }}">
-                                    <a href="{{ route('pelanggaran') }}"
-                                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            fill="currentColor" class="bi bi-clipboard2-x" viewBox="0 0 16 16">
-                                            <path
-                                                d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z" />
-                                            <path
-                                                d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z" />
-                                            <path
-                                                d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293Z" />
-                                        </svg>
-                                        <span class="fs-5 d-none d-sm-inline ms-4">MASTER PELANGGARAN</span>
-                                    </a>
-                                </li>
+
                                 <li class="list-group-item {{ request()->is('pelanggaranSantri') ? 'active' : '' }}">
                                     <a href="{{ route('pelanggaranSantri') }}"
                                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
@@ -355,8 +381,8 @@
                                 @if (Auth::user()->role_id == 3)
 
 
-                                <li class="list-group-item {{ request()->is('datasantri') ? 'active' : '' }}">
-                                    <a href="{{ route('dataSantri') }}"
+                                <li class="list-group-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a href="{{ route('profile') }}"
                                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
@@ -365,7 +391,7 @@
                                             <path
                                                 d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
                                         </svg>
-                                        <span class="fs-5 d-none d-sm-inline ms-4">DATA SANTRI</span>
+                                        <span class="fs-5 d-none d-sm-inline ms-4">PROFILE</span>
                                     </a>
                                 </li>
 
@@ -413,6 +439,19 @@
                                                 d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
                                         </svg>
                                         <span class="fs-5 d-none d-sm-inline ms-4">HOME</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a href="{{ route('profile') }}"
+                                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path
+                                                d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+                                        </svg>
+                                        <span class="fs-5 d-none d-sm-inline ms-4">PROFILE</span>
                                     </a>
                                 </li>
                                 <li class="list-group-item {{ request()->is('perizinan') ? 'active' : '' }}">

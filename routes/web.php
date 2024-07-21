@@ -30,6 +30,10 @@ Route::get('/datasantri', [App\Http\Controllers\DatasantriController::class, 'in
 Route::post('/datasantri-add', [App\Http\Controllers\DatasantriController::class, 'store'])->name('dataSantri-add');
 Route::put('/datasantri-edit', [App\Http\Controllers\DatasantriController::class, 'update'])->name('dataSantri-edit');
 
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::post('/profile-add', [App\Http\Controllers\ProfileController::class, 'store'])->name('profile-add');
+Route::put('/profile-edit', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile-edit');
+
 Route::get('/dataustad', [\App\Http\Controllers\DataustadController::class, 'index'])->name('dataUstad');
 Route::post('/dataustad-add', [\App\Http\Controllers\DataustadController::class, 'store'])->name('dataUstad-add');
 Route::put('/dataustad-edit', [\App\Http\Controllers\DataustadController::class, 'update'])->name('dataUstad-edit');
