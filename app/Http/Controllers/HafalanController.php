@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hafalan;
-use App\Models\Santri;
 use App\Models\surah;
 use App\Models\Ustad;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
+use App\Models\Santri;
+use App\Models\Hafalan;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HafalanController extends Controller
 {
@@ -20,12 +22,24 @@ class HafalanController extends Controller
     public function index()
     {
 
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+        }
+
         $hafalan = Hafalan::get();
         $santri = Santri::get();
         $surah  = surah::get();
         $ustadz = Ustad::get();
         $count = Hafalan::count();
-        return view('hafalan.index', ['hafalan' => $hafalan,'hafalancount'=>$count,'ustadz' => $ustadz,'santri' => $santri,'surah' => $surah]);
+        return view('hafalan.index', ['hafalan' => $hafalan,'hafalancount'=>$count,'ustadz' => $ustadz,'santri' => $santri,'surah' => $surah,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     /**
@@ -94,6 +108,7 @@ class HafalanController extends Controller
      */
     public function update(Request $request)
     {
+        // dd($request->id);
         $this->validate($request, [
             'nisn' => 'required',
             'surat_id' => 'required',

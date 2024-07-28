@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,9 +17,15 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $user   = User::find(Auth::user()->id);
-        return view('profile.index', ['user'=>$user]);
+        return view('profile.index', ['user'=>$user,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     /**

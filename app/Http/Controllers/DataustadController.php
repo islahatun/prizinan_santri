@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Ustad;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DataustadController extends Controller
 {
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $ustadcount = Ustad::count();
         $user = User::all();
         $ustad = Ustad::get();
-        return view('dataustad.index', ['ustad' => $ustad, 'user' => $user, 'ustadcount' => $ustadcount,]);
+        return view('dataustad.index', ['ustad' => $ustad, 'user' => $user, 'ustadcount' => $ustadcount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     public function store(Request $request)

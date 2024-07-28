@@ -9,6 +9,7 @@ use App\Models\pelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Laporan_pelanggaran;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LaporanPelanggaranController extends Controller
@@ -20,12 +21,19 @@ class LaporanPelanggaranController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $pelanggarancount = Laporan_pelanggaran::count();
         $user = User::all();
         $santri = Santri::all();
         $mpelanggaran= pelanggaran::all();
         $pelanggaran = Laporan_pelanggaran::get();
-        return view('pelanggaran.PelanggaranSantri', ['pelanggaran' => $pelanggaran,'mpelanggaran'=>$mpelanggaran, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,]);
+        return view('pelanggaran.PelanggaranSantri', ['pelanggaran' => $pelanggaran,'mpelanggaran'=>$mpelanggaran, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     /**

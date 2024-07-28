@@ -7,16 +7,24 @@ use App\Models\Santri;
 use App\Models\Perizinan;
 use App\Models\pelanggaran;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PelanggaranController extends Controller
 {
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $pelanggarancount = pelanggaran::count();
         $pelanggaran = pelanggaran::get();
-        return view('pelanggaran.index', ['pelanggaran' => $pelanggaran, 'pelanggarancount' => $pelanggarancount,]);
+        return view('pelanggaran.index', ['pelanggaran' => $pelanggaran, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
        /**
      * Show the form for creating a new resource.

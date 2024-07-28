@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Santri;
 use App\Models\Perizinan;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use PDF;
 
 
 class PerizinanController extends Controller
 {
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $perizinancount = Perizinan::count();
-        $user = User::all();
+        $user = User::whereNotNull('ustad_id')->get();
         $santri = Santri::all();
         $perizinan = Perizinan::get();
-        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount]);
+        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     public function store(Request $request)
@@ -50,13 +59,20 @@ class PerizinanController extends Controller
 
     public function pelaporanview()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $santricount = Santri::count();
         $perizinancount = Perizinan::count();
-        $pelanggarancount = Perizinan::where('keterangan', '=', 'Tidak Tepat Waktu')->count();
+        $pelanggarancount = Perizinan::where('keterangan', '=', 'Ditolak')->count();
         $user = User::all();
         $santri = Santri::all();
         $perizinan = Perizinan::get();
-        return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount,]);
+        return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     public function storepelaporan(Request $request)
@@ -99,4 +115,17 @@ class PerizinanController extends Controller
             return redirect('/pelaporan');
         }
     }
+
+    public function download($id){
+        $perizinan = Perizinan::with('santri','user')->find($id);
+        $content = [
+            'data' => $perizinan
+        ];
+
+
+        $pdf = PDF::loadView('report.formulir', $content);
+
+return $pdf->stream('formulir--'.$perizinan->santri->nama.'.pdf');
+    }
+
 }

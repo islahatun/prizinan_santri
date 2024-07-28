@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Santri;
 use App\Models\Perilaku;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PerilakuController extends Controller
@@ -18,11 +20,18 @@ class PerilakuController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $perilakuCount = Perilaku::count();
         $user = User::all();
         $santri = Santri::all();
         $perilaku = Perilaku::get();
-        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,]);
+        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,'countNotif'=>$countNotif,'perizinanaData'=>$perizinanData]);
     }
 
     /**

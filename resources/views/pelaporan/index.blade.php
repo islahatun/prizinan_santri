@@ -71,7 +71,7 @@
                                         d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293Z" />
                                 </svg>
                                 <div class="d-inline-flex mt-4 mx-3">
-                                    <h4 class="fw-bold">JUMLAH PELANGGARAN</h4>
+                                    <h4 class="fw-bold">JUMLAH PERIZINAN DITOLAK</h4>
                                     <h4 class="mx-4 fw-bold">{{ $pelanggarancount }}</h4>
                                 </div>
                             </div>
@@ -104,6 +104,7 @@
                                 <th scope="col">KELAS</th>
                                 <th scope="col">TANGGAL BALIK</th>
                                 <th scope="col">KETERANGAN</th>
+                                <th scope="col">DOWNLOAD</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,6 +116,9 @@
                                     <td>{{ $item->santri->kelas }}</td>
                                     <td>{{ $item->actual_tgl_balik }}</td>
                                     <td>{{ $item->keterangan }}</td>
+                                    <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
+                                            class="btn btn-warning edit">Download
+                                            Formulir</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -153,7 +157,7 @@
                                                     <option value="null">--pilih id Santri--</option>
                                                     @foreach ($perizinan->where('actual_tgl_balik', null) as $item)
                                                         <option value="{{ $item->santri->id }}">
-                                                            {{ $item->santri->nama }}
+                                                            {{ $item->santri->nisn }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -169,8 +173,8 @@
                                             <select class="form-select" name="keterangan"
                                                 aria-label="Default select example">
                                                 <option selected>Pilih Keterangan</option>
-                                                <option value="Tepat Waktu">Tepat Waktu</option>
-                                                <option value="Tidak Tepat Waktu">Tidak Tepat Waktu</option>
+                                                <option value="Dizinkan">Diizinkan</option>
+                                                <option value="Ditolak">Ditolak</option>
                                             </select>
                                         </div>
                                     </div>

@@ -48,6 +48,7 @@ Route::post('/perizinan-add', [\App\Http\Controllers\PerizinanController::class,
 
 Route::get('/pelaporan', [\App\Http\Controllers\PerizinanController::class, 'pelaporanview'])->name('pelaporan');
 Route::post('/pelaporan-add', [\App\Http\Controllers\PerizinanController::class, 'storepelaporan'])->name('pelaporan-add');
+Route::get('/pelaporan-download/{id}', [\App\Http\Controllers\PerizinanController::class, 'download'])->name('pelaporan-download');
 
 Route::get('/pelanggaran', [\App\Http\Controllers\PelanggaranController::class, 'index'])->name('pelanggaran');
 Route::post('/pelanggaran-add', [\App\Http\Controllers\PelanggaranController::class, 'store'])->name('pelanggaranAdd');

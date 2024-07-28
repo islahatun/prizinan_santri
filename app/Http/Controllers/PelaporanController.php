@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Santri;
 use App\Models\Pelaporan;
 use App\Models\Perizinan;
-use App\Models\Santri;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PelaporanController extends Controller
 {
     public function index()
     {
+        if(Auth::user()->role_id == 3){
+            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
         $user = User::all();
         $santri = Santri::all();
         $perizinan = Perizinan::all();
         $pelaporan = Pelaporan::get();
-        return view('pelaporan.index', ['pelaporan' => $pelaporan, 'perizinan' => $perizinan, 'santri' => $santri, 'user' => $user,]);
+        return view('pelaporan.index', ['pelaporan' => $pelaporan, 'perizinan' => $perizinan, 'santri' => $santri, 'user' => $user,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     public function store(Request $request)
@@ -68,4 +76,7 @@ class PelaporanController extends Controller
             }
         }
     }
+
+
+
 }
