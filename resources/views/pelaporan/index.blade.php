@@ -102,6 +102,8 @@
                                 <th scope="col">NISN</th>
                                 <th scope="col">NAMA</th>
                                 <th scope="col">KELAS</th>
+                                <th scope="col">TANGGAL IZIN</th>
+                                <th scope="col">ALASAN IZIN</th>
                                 <th scope="col">TANGGAL BALIK</th>
                                 <th scope="col">KETERANGAN</th>
                                 <th scope="col">DOWNLOAD</th>
@@ -114,6 +116,8 @@
                                     <td>{{ $item->santri->nisn }}</td>
                                     <td>{{ $item->santri->nama }}</td>
                                     <td>{{ $item->santri->kelas }}</td>
+                                    <td>{{ $item->tgl_pulang }}</td>
+                                    <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->actual_tgl_balik }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
