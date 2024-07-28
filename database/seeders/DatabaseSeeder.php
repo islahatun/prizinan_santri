@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
 
         // php artisan db:seed --class=SurahSeeder  -> untuk menjalankan seed surah
+          // php artisan db:seed --class=UserSeeder  -> untuk menjalankan seed surah
 
     }
 }
