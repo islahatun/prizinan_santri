@@ -108,17 +108,7 @@ class HafalanController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->id);
-        $this->validate($request, [
-            'nisn' => 'required',
-            'surat_id' => 'required',
-            'tanggal' => 'required',
-            'nilai' => 'required',
-            'tajwid' => 'required',
-            'makhroj' => 'required',
-            'ustadz_id' => 'required',
 
-        ]);
         $data = $request->except('_token','_method','id');
 
         Hafalan::where('id',$request->id)->update($data);
