@@ -21,23 +21,21 @@ class UserSeeder extends Seeder
 
     $user = [
       [
-        'nis' => 1,
         'name' => 'Admin',
         'email' => 'admin@gmail.com',
-        'password' => hash::make('admin123'),
-        'role' => 'admin',
+        'password' => hash::make('password'),
+        'role_id' => 1,
       ],
       [
-        'nis' => 2,
         'name' => 'Petugas',
         'email' => 'petugas@gmail.com',
-        'password' => hash::make('petugas123'),
-        'role' => 'petugas',
+        'password' => hash::make('password'),
+        'role_id' => 4,
       ],
       [
-        'nis' => 100101,
         'name' => 'User1',
         'email' => 'user1@gmail.com',
+        'role_id' => 3,
         'password' => hash::make('user123'),
 
       ]
