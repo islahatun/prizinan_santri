@@ -106,7 +106,6 @@
                                 <th scope="col">ALASAN IZIN</th>
                                 <th scope="col">TANGGAL BALIK</th>
                                 <th scope="col">KETERANGAN</th>
-                                <th scope="col">DOWNLOAD</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,9 +119,6 @@
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->actual_tgl_balik }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
-                                            class="btn btn-warning edit">Download
-                                            Formulir</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

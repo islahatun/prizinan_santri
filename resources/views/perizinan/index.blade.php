@@ -68,6 +68,7 @@
                                 <th scope="col">TANGGAL BALIK</th>
                                 <th scope="col">ALASAN IZIN</th>
                                 <th scope="col">TERTANDA</th>
+                                <th>AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,6 +81,9 @@
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->user->name }}</td>
+                                    <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
+                                        class="btn btn-warning edit">Download
+                                        Formulir</a></td>
 
                                 </tr>
                             @endforeach
