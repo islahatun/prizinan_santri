@@ -2,23 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hafalan;
-use App\Models\Laporan_pelanggaran;
-use App\Models\Perilaku;
 use PDF;
 use App\Models\Santri;
+use App\Models\Hafalan;
+use App\Models\Perilaku;
+use App\Models\Perizinan;
 use Illuminate\Http\Request;
+use App\Models\Laporan_pelanggaran;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
     public function index(){
 
+        if(Auth::user()->role_id == 3){
+            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $countNotif = $count? $count:0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
+        }else{
+            $count = Perizinan::whereNull('keterangan')->count();
+            $countNotif = $count? $count:0;
+            $perizinanData = Perizinan::whereNull('keterangan')->get();
+        }
+
         $santri = Santri::get();
         if(Auth::user()->role_id == '3'){
             $santri = Santri::where('orang_tua',Auth::user()->id)->get();
         }
-        return view('report.index', ['santri' => $santri]);
+        return view('report.index', ['santri' => $santri,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
     public function report($id){
 

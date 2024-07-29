@@ -16,10 +16,12 @@ class PelanggaranController extends Controller
     public function index()
     {
         if(Auth::user()->role_id == 3){
-            $countNotif = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
+            $countNotif = $count? $count:0;
             $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
         }else{
-            $countNotif = Perizinan::whereNull('keterangan')->count();
+            $count = Perizinan::whereNull('keterangan')->count();
+            $countNotif = $count? $count:0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
         }
         $pelanggarancount = pelanggaran::count();
