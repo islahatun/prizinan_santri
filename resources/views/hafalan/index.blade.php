@@ -90,7 +90,7 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->ustadz_id }}</td>
                                     <td>{{ $item->santri_id }}</td>
-                                    <td>{{ $item->surat_id }}</td>
+                                    <td>{{ $item->surah_id }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                     </td>
@@ -126,7 +126,7 @@
                                         <div class="form-group">
                                             <label for="">SURAT</label>
                                             {{-- <input type="number" name="juz_id" class="form-control"> --}}
-                                            <select class="form-select surat_id" name="surat_id"
+                                            <select class="form-select surat_id" name="surah_id"
                                             aria-label="Default select example">
                                             <option selected>Pilih Surat</option>
                                             @foreach ($surah as $s )
@@ -209,7 +209,7 @@
                                         <div class="form-group">
                                             <label for="">SURAT</label>
                                             {{-- <input id="surat_id" type="number" name="surat_id" class="form-control"> --}}
-                                            <select class="form-select surat_id" name="surat_id" id="surat_id"
+                                            <select class="form-select surat_id" name="surah_id" id="surah_id"
                                             aria-label="Default select example">
                                             <option selected>Pilih Nisn</option>
                                             @foreach ($surah as $s )
@@ -318,7 +318,7 @@
                 var data = table.row($tr).data();
                 $('#id').val(data[9]);
                 $('#santri_id').val(data[11]);
-                $('#surat_id').val(data[12]);
+                $('#surah_id').val(data[12]);
                 $('#tanggal').val(data[4]);
                 $('#tajwid').val(data[5]);
                 $('#makhroj').val(data[6]);

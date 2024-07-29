@@ -22,6 +22,6 @@ class Hafalan extends Model
 
     public function surat()
     {
-        return $this->belongsTo(surah::class, 'surat_id', 'id');
+        return $this->belongsTo(surah::class, 'surah_id', 'id');
     }
 }
