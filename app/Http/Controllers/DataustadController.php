@@ -61,7 +61,7 @@ class DataustadController extends Controller
         $user->email = $request->input('email');
         $user->role_id = 2;
         $user->email_verified_at = $request->input('email_verified_at');
-        $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password')) ;
 
         $user->save();
 

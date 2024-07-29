@@ -33,7 +33,7 @@ class PerilakuController extends Controller
         $user = User::all();
         $santri = Santri::all();
         $perilaku = Perilaku::get();
-        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,'countNotif'=>$countNotif,'perizinanaData'=>$perizinanData]);
+        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
     }
 
     /**

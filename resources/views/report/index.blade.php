@@ -65,7 +65,7 @@
                                     <td>{{ $item->tempat_lahir }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->kelas }}</td>
-                                    <td>{{ $item->orang_tua }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->no_telepon }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>
