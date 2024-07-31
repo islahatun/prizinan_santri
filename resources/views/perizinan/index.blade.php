@@ -82,8 +82,8 @@
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->user->name }}</td>
                                     <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
-                                        class="btn btn-warning edit">Download
-                                        Formulir</a></td>
+                                            class="btn btn-warning edit">Download
+                                            Formulir</a></td>
 
                                 </tr>
                             @endforeach

@@ -1,3 +1,6 @@
+</body>
+
+</html>
 @extends('layouts.app')
 @push('custom-style')
     <style>
@@ -60,9 +63,39 @@
             background-color: #1E1E1E;
             border-radius: 16px;
         }
+
+        .btn-home {
+            width: 300.47px;
+            height: 64.58px;
+            border: none;
+            background: #083AA9;
+            border-radius: 10px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 38px;
+            color: #FFFFFF;
+        }
+
+        .btn-home:hover {
+            filter: drop-shadow(5px 5px 4px #083AA9);
+            transition: 0.3s;
+        }
+
+        #home {
+            background: linear-gradient(247.6deg, rgba(255, 231, 204, 0.26) 1.51%, #FFE7CC 93.99%, #FFE7CC 94.88%);
+            height: 100vh;
+            position: relative;
+            top: 0px;
+        }
+
+        .homeconten {
+            z-index: 2;
+        }
     </style>
 @endpush
-@section('beranda')
+
+@section('content')
     <section id="beranda">
         <div class="container">
             <div class="row">
@@ -78,7 +111,6 @@
                             </div>
                             <div class="col-12 mt-5">
                                 <p class="mb-5 fs-5 fw-semibold">Berdiri diatas dan untuk semua golongan</p>
-                                <button type="button" class="btn btn-light">SIGN IN</button>
                             </div>
                         </div>
                     </div>
@@ -372,7 +404,7 @@
                             <div class="card">
                                 <h5 class="fw-bold mt-2">Kunjungi Website resmi></h5>
                                 <a href="http://misbahululum.ac.id
-                                ">Klik disini</a>
+                            ">Klik disini</a>
                             </div>
                         </div>
                     </div>

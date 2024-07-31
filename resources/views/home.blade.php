@@ -99,17 +99,43 @@
     <section id="beranda">
         <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <img src="/build/assets/gambarpreview.png" alt="landingp" width="634" height="700">
+                <div class="col-5">
+                    <img src="/build/assets/foto pondok.jpg" alt="landingp" width="750" height="700">
                 </div>
                 <div class="col-6 ">
                     <div class="background text-center d-flex align-items-center ">
                         <div class="row">
                             <div class="col-12 mb-4 fs-3">
+                            </div>
+                            <div class="col-12 mt-5">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-4 fs-3">
+                                <br>
+                            </div>
+                            <div class="col-12 mb-2 fs-2">
                                 <h3 class="fw-bold">Modern Islamic College Boarding School</h3>
                                 <h3 class="fw-bold">Pesantren modern Al-Rahmah</h3>
                             </div>
-                            <div class="col-12 mt-5">
+                            <div>
+                                <br>
                                 <p class="mb-5 fs-5 fw-semibold">Berdiri diatas dan untuk semua golongan</p>
                             </div>
                         </div>
@@ -147,7 +173,7 @@
         </div>
     </section>
     {{-- section gallery --}}
-    {{-- <section id="gallery">
+    <section id="gallery">
         <div class="container">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -166,46 +192,21 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('/build/assets/browsur pondok') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/build/assets/poster pondok.jpg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h3>Perkuat Silaturahmi</h3>
-                            <p> Direktur Pondok Modern Darussalam Gontor Kunjungi Misbahul Ulum.</p>
+                            <h3 class="fw-bold text-black">Informasi pendaftaran</h3>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/browsur pondok(1)') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/build/assets/poster pondok 1.jpg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h3>Santri Baru</h3>
-                            <p>Suasana kedatangan Santri Baru Pesantren Modern Misbahul Ulum.</p>
+                            <h3 class="fw-bold text-black">Informasi Kegiatan santri</h3>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/slide-3.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/build/assets/poster pondok 2.jpg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h3>Kreasi Santri</h3>
-                            <p>Pagelaran Seni Panggung Gembira 626 Pesantren Modern Misbahul Ulum.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/slide-4.jpg') }}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Maulid Nabi Muhammad SAW</h3>
-                            <p>Peringati Maulid Nabi Muhammad SAW, Misbahul Ulum Hadirkan Tgk Musmulyadi.</p>
-                        </div>
-                    </div>
-
-                    <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/slide-5.jpg') }}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Pengukuhan wisuda alumni</h3>
-                            <p>Yayasan Misbahul Ulum menggelar Pengukuhan Alumni yang ke-21 </p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('/build/assets/slide-6.jpg') }}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Ikrar Alumni</h3>
-                            <p>Seluruh Santri Akhir mengikuti Pembacaan Ikrar Alumni</p>
+                            <h3 class="fw-bold text-black">Informasi Biaya Santri</h3>
                         </div>
                     </div>
                 </div>
@@ -221,133 +222,175 @@
                 </button>
             </div>
         </div>
-    </section> --}}
-    {{-- section sejarah --}}
-    <section id="sejarah">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <div class="bg-sj-2 position-relative">
-                        <div class="text-black position-absolute mt-5 ms-5">
-                            <h3 class="fw-bold">SEJARAH</h3>
-                            <h3 class="fw-bold">SEJARAH BERDIRINYA</h3>
-                            <p class="fw-normal text-justify">
-                                <span>Pondok Pesantren Al-Rahmah berdiri Rabu,
-                                    11 Mei 2005 dengan peletakan batu pertama di sebuah lahan yang sekarang
-                                    merupakan lokasi berdirinya gedung Kuwait. Pondok ini berdiri awal mulanya diatas
-                                    tanah
-                                    pinjaman milik H. Yahya,
-                                    salah seorang warga kampung Lebakwangi.
-                                    Geliat kegiatan pendidikan dan pengajaran Pesantren al-Rahmah berjalan dengan segala
-                                    keterbatasan dana,
-                                    jumlah tenaga pengajar dan sarana dan prasarana.
-                                    Karena rata-rata peserta didik yang ada merupakan kalangan ekonomi lemah (yatim dan
-                                    duafa).
-                                    Dimulai pada tahun 2005 dengan jumlah santri 35 orang yang merupakan santri yatim
-                                    dan
-                                    dhu’afa ponpes al-Rahmah memulai kiprahnya.
-                                </span>
-                                <br>
-                                <br>
-                                <span> Pada tahun 2010 Ust. Abdul Rasyid Muslim bertemu Ust Abdullah Saeed Baharmus.
-                                    Kunjungan pertamanya ditemani oleh KH. Ikhwan Hadiyin (pimpinan ponpes Daar El-Azhar
-                                    Rangkasbitung)
-                                    dan Ust Sa’du Suud, ahli bekam yang merupakan alumni Gontor. Ust. Sa’du Suud
-                                    beberapa kali berkunjung dan menginap di al-Rahmah, dan melalui lisan beliau Ust.
-                                    Abdullah Saeed Baharmus
-                                </span>
-                                <br>
-                                <br>
-                                <span> Saat itu jumlah santri telah mencapai 280 an.
-                                    Tahun 2010 merupakan puncaknya kesulitan sekaligus terbukanya kemudahan bagi ponpes
-                                    al-Rahmah.
-                                    Dimulai dengan kedatangan Ust. Abdullah Saeed Baharmus, yang kemudian menjadi ketua
-                                    Badan Wakaf al-Rahmah.
-                                    Berkat Beliau, mulailah berdatangan bantuan dari negara-negara Timur Tengah
-                                    diantaranya
-                                    Saudi, dan Kuwait.
-                                    Pada tahun 2017 Ponpes Al-Rahmah ditetapkan menjadi Qoryah Kuwait al-Khairiyyah
-                                    (Kampung
-                                    Amal Kuwait).</span>
-                                <br>
-                                <br>
-                                <span>Pondok Pesantren al-Rahmah yang berada di Walantaka, Lebak Wangi, Kota Serang,
-                                    Provinsi
-                                    Banten.
-                                    Pada tahun ajaran 2023/2024 pesantren ini memiliki santri dan santriwati mencapai
-                                    1.300
-                                    orang yang
-                                    terbagi pada jenjang Madrasah Tsanawiyah (MTS) dan Madrasah Aliyah (MA).</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
-    {{-- section kontak --}}
-    <section id="kontak">
-        <div class="container-fluid">
-            <div class="background2">
-                <div class="row">
-                    <div class="col-6 justify-content-center d-flex align-content-center">
-                        <div class="card mt-5 text-white">
-                            <h4 class="mt-2 fw-bold text-center">CONTACT</h4>
-                            <p class="mt-5 ms-5 fw-normal text-justify">
-                                Jl Ciruas - Petir Lebakwangi -
-                                <br>
-                                Walantaka Kota Serang -
-                                <br>
-                                Banten - Indonesia
-                                <br>
-                                <br>
-                                HP:
-                                <br>
-                                Ust. Wahyudin, S.Pd.I : 085216100194
-                                <br>
-                                Ust. Tedi Hartadi : 089651854068
-                                <br>
-                                Usth. Harisah Jamilah : 08888145972
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-6 justify-content-center d-flex align-content-center">
-                        <div class="card mt-5 text-white">
-                            <h4 class="mt-2 text-center">SARAN & MASUKAN</h4>
-                            <form class="row g-3 ms-2 me-2 mt-1 mb-1">
-                                <div class="col-md-6">
-                                    <label for="inputname" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="inputname" placeholder="masukkan nama">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="inputemail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputemail" placeholder="masukkan email">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputalamat" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="inputalamat" placeholder="jalan/desa">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputfeedback">Feedback</label>
-                                    <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="masukkan ulasan"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
-                                            Check me out
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
-                                </div>
-                            </form>
+
+
+    <div class="container-fluid">
+        <h4 class="text-center mt-4 fw-bold"></h4>
+
+
+        {{-- section sejarah --}}
+        <section id="sejarah">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-6 justify-content-center align-content-center">
+                        <div class="bg-sj-2 position-relative">
+                            <div class="text-black position-absolute mt-5 ms-5">
+                                <h3 class="fw-bold">SEJARAH</h3>
+                                <h3 class="fw-bold">SEJARAH BERDIRINYA</h3>
+                                <p class="fw-normal text-justify" style="text-align: justify">
+                                    <span><br>Pondok Pesantren Al-Rahmah berdiri Rabu,
+                                        11 Mei 2005 dengan peletakan batu pertama
+                                        <br> di sebuah lahan yang sekarang
+                                        merupakan lokasi berdirinya gedung Kuwait. Pondok ini <br> berdiri awal
+                                        mulanya
+                                        diatas
+                                        tanah
+                                        pinjaman milik H. Yahya,
+                                        salah seorang warga kampung
+                                        <br> Lebakwangi.
+                                        Geliat kegiatan pendidikan dan pengajaran Pesantren al-Rahmah berjalan
+                                        <br> dengan
+                                        segala
+                                        keterbatasan dana,
+                                        jumlah tenaga pengajar dan sarana dan prasarana.
+                                        <br> Karena rata-rata peserta didik yang ada merupakan kalangan ekonomi lemah
+                                        (yatim
+                                        dan <br>
+                                        duafa).
+                                        Dimulai pada tahun 2005 dengan jumlah santri 35 orang yang merupakan
+                                        santri <br>
+                                        yatim
+                                        dan
+                                        dhu’afa ponpes al-Rahmah memulai kiprahnya.
+                                    </span>
+                                    <br>
+                                    <br>
+                                    <span> Pada tahun 2010 Ust. Abdul Rasyid Muslim bertemu Ust Abdullah Saeed
+                                        Baharmus. <br>
+                                        Kunjungan pertamanya ditemani oleh KH. Ikhwan Hadiyin (pimpinan ponpes
+                                        Daar
+                                        <br>El-Azhar
+                                        Rangkasbitung)
+                                        dan Ust Sa’du Suud, ahli bekam yang merupakan alumni Gontor. <br> Ust. Sa’du
+                                        Suud
+                                        beberapa kali berkunjung dan menginap di al-Rahmah, dan melalui <br> lisan
+                                        beliau
+                                        Ust.
+                                        Abdullah Saeed Baharmus
+                                    </span>
+                                    <br>
+                                    <br>
+                                    <span> Saat itu jumlah santri telah mencapai 280 an.
+                                        Tahun 2010 merupakan puncaknya <br> kesulitan sekaligus terbukanya kemudahan
+                                        bagi
+                                        ponpes
+                                        al-Rahmah.
+                                        Dimulai <br> dengan kedatangan Ust. Abdullah Saeed Baharmus, yang kemudian
+                                        menjadi
+                                        ketua
+                                        Badan <br> Wakaf al-Rahmah.
+                                        Berkat Beliau, mulailah berdatangan bantuan dari negara-negara <br> Timur
+                                        Tengah
+                                        diantaranya
+                                        Saudi, dan Kuwait.
+                                        Pada tahun 2017 Ponpes Al-Rahmah <br> ditetapkan menjadi Qoryah Kuwait
+                                        al-Khairiyyah
+                                        (Kampung
+                                        Amal Kuwait).</span>
+                                    <br>
+                                    <br>
+                                    <span>Pondok Pesantren al-Rahmah yang berada di Walantaka, Lebak Wangi, Kota
+                                        Serang, <br>
+                                        Provinsi
+                                        Banten.
+                                        Pada tahun ajaran 2023/2024 pesantren ini memiliki santri dan santriwati <br>
+                                        mencapai
+                                        1.300
+                                        orang yang
+                                        terbagi pada jenjang Madrasah Tsanawiyah (MTS) <br> dan
+                                        Madrasah Aliyah (MA).</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
+    </section>
+    {{-- End section sejarah --}}
+
+    <div class="container-fluid">
+        <h4 class="text-center mt-4 fw-bold"></h4>
+
+        {{-- section kontak --}}
+        <section id="kontak">
+            <div class="container-fluid">
+                <div class="background2">
+                    <div class="row">
+                        <div class="col-6 justify-content-center d-flex align-content-center">
+                            <div class="card mt-5 text-white">
+                                <h4 class="mt-2 fw-bold text-center">CONTACT</h4>
+                                <p class="mt-5 ms-5 fw-normal text-justify">
+                                    Jl Ciruas - Petir Lebakwangi -
+                                    <br>
+                                    Walantaka Kota Serang -
+                                    <br>
+                                    Banten - Indonesia
+                                    <br>
+                                    <br>
+                                    HP:
+                                    <br>
+                                    Ust. Wahyudin, S.Pd.I : 085216100194
+                                    <br>
+                                    Ust. Tedi Hartadi : 089651854068
+                                    <br>
+                                    Usth. Harisah Jamilah : 08888145972
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 justify-content-center d-flex align-content-center">
+                            <div class="card mt-5 text-white">
+                                <h4 class="mt-2 text-center">SARAN & MASUKAN</h4>
+                                <form class="row g-3 ms-2 me-2 mt-1 mb-1">
+                                    <div class="col-md-6">
+                                        <label for="inputname" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" id="inputname"
+                                            placeholder="masukkan nama">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputemail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="inputemail"
+                                            placeholder="masukkan email">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputalamat" class="form-label">Alamat</label>
+                                        <input type="text" class="form-control" id="inputalamat"
+                                            placeholder="jalan/desa">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputfeedback">Feedback</label>
+                                        <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="masukkan ulasan"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                                Check me out
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Kirim</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
     </section>
 
     {{-- section footer --}}
