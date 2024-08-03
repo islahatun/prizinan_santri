@@ -123,7 +123,7 @@
                                     <td>{{ $item->tgl_pulang }}</td>
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
