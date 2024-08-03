@@ -80,7 +80,7 @@
                                     <td>{{ $item->tgl_pulang }}</td>
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{  $item->user?$item->user->name:"" }}</td>
                                     <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
                                             class="btn btn-warning edit">Download
                                             Formulir</a></td>
@@ -131,7 +131,7 @@
                                             <input type="text" name="alasan_izin" class="form-control"
                                                 placeholder="Masukkan alasan izin">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="">Tertanda</label>
                                             <select name="user_id" id="" class="form-control inputbox">
                                                 <option value="">--pilih Pemberi--</option>
@@ -139,7 +139,7 @@
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

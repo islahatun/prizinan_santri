@@ -73,7 +73,7 @@ class PerizinanController extends Controller
         $santricount = Santri::count();
         $perizinancount = Perizinan::count();
         $pelanggarancount = Perizinan::where('keterangan', '=', 'Ditolak')->count();
-        $user = User::all();
+        $user = User::whereNotNull('ustad_id')->get();
         $santri = Santri::all();
         $perizinan = Perizinan::get();
         return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);

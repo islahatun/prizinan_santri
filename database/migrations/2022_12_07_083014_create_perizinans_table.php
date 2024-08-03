@@ -22,7 +22,7 @@ class CreatePerizinansTable extends Migration
             $table->date('actual_tgl_balik')->nullable();
             $table->string('alasan_izin', 100)->required();
             $table->string('keterangan', 100)->nullable();
-            $table->foreignIdFor(new User());
+            $table->foreignIdFor(new User())->nullable();
             $table->foreignIdFor(new Santri());
             $table->timestamps();
         });

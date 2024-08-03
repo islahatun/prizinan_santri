@@ -72,6 +72,7 @@
                                 <th scope="col">ustadzid</th>
                                 <th scope="col">studentid</th>
                                 <th scope="col">suratid</th>
+                                <th scope="col">CATATAN</th>
                                 <th scope="col">AKSI</th>
                             </tr>
                         </thead>
@@ -91,6 +92,7 @@
                                     <td>{{ $item->ustadz_id }}</td>
                                     <td>{{ $item->santri_id }}</td>
                                     <td>{{ $item->surah_id }}</td>
+                                    <td>{{ $item->catatan }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning edit">Edit</a>
                                     </td>
@@ -154,6 +156,10 @@
                                             <label for="">Nilai </label>
                                             <input type="number" name="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Catatan</label>
+                                            <textarea name="catatan" class="form-control" id="" cols="20" rows="10"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Penguji</label>
@@ -237,6 +243,10 @@
                                             <label for="">Nilai </label>
                                             <input type="number" name="nilai" id="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Catatan</label>
+                                            <textarea name="catatan" class="form-control" id="catatan" cols="20" rows="10"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Penguji</label>
@@ -324,6 +334,7 @@
                 $('#makhroj').val(data[6]);
                 $('#nilai').val(data[7]);
                 $('#ustadz_id').val(data[10]);
+                $('#catatan').val(data[13]);
 
 
                 $('#editForm').attr('action', '/hafalan-update');

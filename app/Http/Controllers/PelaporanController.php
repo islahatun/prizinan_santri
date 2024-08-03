@@ -15,6 +15,7 @@ class PelaporanController extends Controller
 {
     public function index()
     {
+        dd('ajskasj');
         if(Auth::user()->role_id == 3){
             $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
             $countNotif = $count? $count:0;
@@ -24,7 +25,8 @@ class PelaporanController extends Controller
             $countNotif = $count? $count:0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
         }
-        $user = User::all();
+        $user = User::whereNotNull('ustad_id')->get();
+        dd($user);
         $santri = Santri::all();
         $perizinan = Perizinan::all();
         $pelaporan = Pelaporan::get();

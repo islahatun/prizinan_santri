@@ -21,6 +21,7 @@ class CreateHafalansTable extends Migration
             $table->integer('surah_id');
             $table->integer('tajwid');
             $table->integer('makhroj');
+            $table->string('catatan');
             $table->foreignId('ustadz_id');
             $table->timestamps();
         });

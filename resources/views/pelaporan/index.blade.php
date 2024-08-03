@@ -106,6 +106,7 @@
                                 <th scope="col">ALASAN IZIN</th>
                                 <th scope="col">TANGGAL BALIK</th>
                                 <th scope="col">KETERANGAN</th>
+                                <th scope="col">PERTANDA</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,6 +120,7 @@
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->actual_tgl_balik }}</td>
                                     <td>{{ $item->keterangan }}</td>
+                                    <td>{{ $item->user?$item->user->name:"" }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -167,6 +169,15 @@
                                             <label for="">Tanggal Balik</label>
                                             <input readonly type="date" value="{{ $today }}"
                                                 name="actual_tgl_balik" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Tertanda</label>
+                                            <select name="user_id" id="" class="form-control inputbox">
+                                                <option value="">--pilih Pemberi--</option>
+                                                @foreach ($user as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Keterangan</label>
