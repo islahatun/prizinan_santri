@@ -21,21 +21,31 @@ class LaporanPelanggaranController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
         $pelanggarancount = Laporan_pelanggaran::count();
         $user = User::all();
         $santri = Santri::all();
-        $mpelanggaran= pelanggaran::all();
+        $mpelanggaran = pelanggaran::all();
         $pelanggaran = Laporan_pelanggaran::get();
-        return view('pelanggaran.PelanggaranSantri', ['pelanggaran' => $pelanggaran,'mpelanggaran'=>$mpelanggaran, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('pelanggaran.PelanggaranSantri', ['pelanggaran' => $pelanggaran, 'mpelanggaran' => $mpelanggaran, 'santri' => $santri, 'user' => $user, 'pelanggarancount' => $pelanggarancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     /**
@@ -108,9 +118,9 @@ class LaporanPelanggaranController extends Controller
             'keterangan' => 'required',
 
         ]);
-        $data = $request->except('_token','_method','id');
+        $data = $request->except('_token', '_method', 'id');
 
-        Laporan_pelanggaran::where('id',$request->id)->update($data);
+        Laporan_pelanggaran::where('id', $request->id)->update($data);
 
         return redirect('/pelanggaranSantri')->with('success', ' Data Berhasil DiPerbaharui ');
     }

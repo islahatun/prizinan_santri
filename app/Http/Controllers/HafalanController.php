@@ -22,14 +22,24 @@ class HafalanController extends Controller
     public function index()
     {
 
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
 
         $hafalan = Hafalan::get();
@@ -37,7 +47,7 @@ class HafalanController extends Controller
         $surah  = surah::get();
         $ustadz = Ustad::get();
         $count = Hafalan::count();
-        return view('hafalan.index', ['hafalan' => $hafalan,'hafalancount'=>$count,'ustadz' => $ustadz,'santri' => $santri,'surah' => $surah,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('hafalan.index', ['hafalan' => $hafalan, 'hafalancount' => $count, 'ustadz' => $ustadz, 'santri' => $santri, 'surah' => $surah, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     /**
@@ -60,19 +70,18 @@ class HafalanController extends Controller
     {
         // dd($request->all());
 
-            try {
-                DB::beginTransaction();
-                Hafalan::create($request->all());
+        try {
+            DB::beginTransaction();
+            Hafalan::create($request->all());
 
-                DB::commit();
-                Session::flash('message', 'perizinan berhasil');
-                Session::flash('alert-class', 'alert-success');
-                return redirect('/hafalan');
-            } catch (\Throwable $th) {
-                DB::rollBack();
-                dd($th);
-            }
-
+            DB::commit();
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/hafalan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+        }
     }
 
     /**
@@ -107,9 +116,9 @@ class HafalanController extends Controller
     public function update(Request $request)
     {
 
-        $data = $request->except('_token','_method','id');
+        $data = $request->except('_token', '_method', 'id');
 
-        Hafalan::where('id',$request->id)->update($data);
+        Hafalan::where('id', $request->id)->update($data);
 
         return redirect('/hafalan')->with('success', ' Data Berhasil DiPerbaharui ');
     }

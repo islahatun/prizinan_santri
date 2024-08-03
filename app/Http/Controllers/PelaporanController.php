@@ -15,14 +15,14 @@ class PelaporanController extends Controller
 {
     public function index()
     {
-        dd('ajskasj');
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->where('user_id', Auth::user()->id)->count();
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id', Auth::user()->id)->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
         }
         $user = User::whereNotNull('ustad_id')->get();
@@ -30,13 +30,13 @@ class PelaporanController extends Controller
         $santri = Santri::all();
         $perizinan = Perizinan::all();
         $pelaporan = Pelaporan::get();
-        return view('pelaporan.index', ['pelaporan' => $pelaporan, 'perizinan' => $perizinan, 'santri' => $santri, 'user' => $user,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('pelaporan.index', ['pelaporan' => $pelaporan, 'perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     public function store(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
 
         $santri = Santri::findOrFail($request->santri_id)->only('status');
         if ($santri['status'] != 'tbpulang') {
@@ -80,7 +80,4 @@ class PelaporanController extends Controller
             }
         }
     }
-
-
-
 }

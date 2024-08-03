@@ -16,20 +16,30 @@ class PerizinanController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
         $perizinancount = Perizinan::count();
         $user = User::whereNotNull('ustad_id')->get();
         $santri = Santri::all();
-        $perizinan = Perizinan::get();
-        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+
+        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     public function store(Request $request)
@@ -61,13 +71,13 @@ class PerizinanController extends Controller
 
     public function pelaporanview()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->where('user_id', Auth::user()->id)->count();
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id', Auth::user()->id)->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
         }
         $santricount = Santri::count();
@@ -76,7 +86,7 @@ class PerizinanController extends Controller
         $user = User::whereNotNull('ustad_id')->get();
         $santri = Santri::all();
         $perizinan = Perizinan::get();
-        return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     public function storepelaporan(Request $request)
@@ -89,39 +99,41 @@ class PerizinanController extends Controller
 
         if ($izincount == 1) {
             $santri = Santri::findOrFail($request->santri_id)->only('status');
-            if ($santri['status'] != 'tbpulang') {
-                Session::flash('message', 'tidak bisa melakukan pelaporan karena kesalahan data');
-                Session::flash('alert-class', 'alert-danger');
-                return redirect('/pelaporan');
-            } else {
-                try {
-                    DB::beginTransaction();
-                    $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
-                    $izindata->keterangan = $request->input('keterangan');
-                    $izindata->save();
+            // if ($santri['status'] != 'tbpulang') {
+            //     Session::flash('message', 'tidak bisa melakukan pelaporan karena kesalahan data');
+            //     Session::flash('alert-class', 'alert-danger');
+            //     return redirect('/pelaporan');
+            // } else {
+            try {
+                DB::beginTransaction();
+                $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
+                $izindata->keterangan = $request->input('keterangan');
+                $izindata->user_id = $request->input('user_id');
+                $izindata->save();
 
-                    $santri = Santri::findOrFail($request->santri_id);
-                    $santri->status = 'bpulang';
-                    $santri->save();
-                    DB::commit();
-                    Session::flash('message', 'pelaporan berhasil');
-                    Session::flash('alert-class', 'alert-success');
-                    return redirect('/pelaporan');
-                } catch (\Throwable $th) {
-                    //throw $th;
-                    DB::rollBack();
-                    dd($th);
-                }
+                $santri = Santri::findOrFail($request->santri_id);
+                $santri->status = 'bpulang';
+                $santri->save();
+                DB::commit();
+                Session::flash('message', 'pelaporan berhasil');
+                Session::flash('alert-class', 'alert-success');
+                return redirect('/pelaporan');
+            } catch (\Throwable $th) {
+                //throw $th;
+                DB::rollBack();
+                dd($th);
             }
-        } else {
-            Session::flash('message', 'tidak bisa melakukan pelaporan karena kesalahan data');
-            Session::flash('alert-class', 'alert-danger');
-            return redirect('/pelaporan');
         }
+        // } else {
+        //     Session::flash('message', 'tidak bisa melakukan pelaporan karena kesalahan data');
+        //     Session::flash('alert-class', 'alert-danger');
+        //     return redirect('/pelaporan');
+        // }
     }
 
-    public function download($id){
-        $perizinan = Perizinan::with('santri','user')->find($id);
+    public function download($id)
+    {
+        $perizinan = Perizinan::with('santri', 'user')->find($id);
         $content = [
             'data' => $perizinan
         ];
@@ -129,7 +141,6 @@ class PerizinanController extends Controller
 
         $pdf = PDF::loadView('report.formulir', $content);
 
-return $pdf->stream('formulir--'.$perizinan->santri->nama.'.pdf');
+        return $pdf->stream('formulir--' . $perizinan->santri->nama . '.pdf');
     }
-
 }

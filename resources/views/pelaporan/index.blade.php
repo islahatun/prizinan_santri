@@ -120,7 +120,7 @@
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->actual_tgl_balik }}</td>
                                     <td>{{ $item->keterangan }}</td>
-                                    <td>{{ $item->user?$item->user->name:"" }}</td>
+                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

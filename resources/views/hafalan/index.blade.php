@@ -66,7 +66,7 @@
                                 <th scope="col">TANGGAL TES</th>
                                 <th scope="col">TAJWID</th>
                                 <th scope="col">MAKHROJ</th>
-                                <th scope="col">NILAI</th>
+                                <th scope="col">NILAI KELANCARAN</th>
                                 <th scope="col">PENGUJI</th>
                                 <th scope="col">id</th>
                                 <th scope="col">ustadzid</th>
@@ -82,7 +82,7 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->santri->nisn }}</td>
                                     <td>{{ $item->santri->nama }}</td>
-                                    <td>{{ $item->surat?$item->surat->name:"" }}</td>
+                                    <td>{{ $item->surat ? $item->surat->name : '' }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->tajwid }}</td>
                                     <td>{{ $item->makhroj }}</td>
@@ -117,24 +117,25 @@
                                         <div class="form-group">
                                             <label for="">NISN</label>
                                             <select class="form-select" name="santri_id"
-                                            aria-label="Default select example">
-                                            <option selected>Pilih Nisn</option>
-                                            @foreach ($santri as $s )
-                                            <option value="{{ $s->id }}">{{ $s->nisn }} - {{ $s->nama }}</option>
-                                            @endforeach
-                                        </select>
+                                                aria-label="Default select example">
+                                                <option selected>Pilih Nisn</option>
+                                                @foreach ($santri as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->nisn }} -
+                                                        {{ $s->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="">SURAT</label>
                                             {{-- <input type="number" name="juz_id" class="form-control"> --}}
                                             <select class="form-select surat_id" name="surah_id"
-                                            aria-label="Default select example">
-                                            <option selected>Pilih Surat</option>
-                                            @foreach ($surah as $s )
-                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
+                                                aria-label="Default select example">
+                                                <option selected>Pilih Surat</option>
+                                                @foreach ($surah as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tanggal Tes</label>
@@ -153,7 +154,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Nilai </label>
+                                            <label for="">Nilai KELANCARAN</label>
                                             <input type="number" name="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
                                         </div>
@@ -166,8 +167,8 @@
                                             <select class="form-select" name="ustadz_id" id="ustadz"
                                                 aria-label="Default select example">
                                                 <option selected>Pilih Ustadz</option>
-                                                @foreach ($ustadz as $u )
-                                                <option value="{{ $u->id }}">{{ $u->nama }}</option>
+                                                @foreach ($ustadz as $u)
+                                                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -204,24 +205,25 @@
                                         <div class="form-group">
                                             <label for="">NISN</label>
                                             <select class="form-select" name="santri_id" id="santri_id"
-                                            aria-label="Default select example">
-                                            <option selected>Pilih Nisn</option>
-                                            @foreach ($santri as $s )
-                                            <option value="{{ $s->id }}">{{ $s->nisn }} - {{ $s->nama }}</option>
-                                            @endforeach
-                                        </select>
+                                                aria-label="Default select example">
+                                                <option selected>Pilih Nisn</option>
+                                                @foreach ($santri as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->nisn }} -
+                                                        {{ $s->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="">SURAT</label>
                                             {{-- <input id="surat_id" type="number" name="surat_id" class="form-control"> --}}
                                             <select class="form-select surat_id" name="surah_id" id="surah_id"
-                                            aria-label="Default select example">
-                                            <option selected>Pilih Nisn</option>
-                                            @foreach ($surah as $s )
-                                            <option value="{{ $s->id }}">{{ $s->name }}</option>
-                                            @endforeach
-                                        </select>
+                                                aria-label="Default select example">
+                                                <option selected>Pilih Nisn</option>
+                                                @foreach ($surah as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tanggal Tes</label>
@@ -240,7 +242,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Nilai </label>
+                                            <label for="">Nilai Kelancaran </label>
                                             <input type="number" name="nilai" id="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
                                         </div>
@@ -253,8 +255,8 @@
                                             <select class="form-select" name="ustadz_id" id="ustadz_id"
                                                 aria-label="Default select example">
                                                 <option selected>Pilih Ustadz</option>
-                                                @foreach ($ustadz as $u )
-                                                <option value="{{ $u->id }}">{{ $u->nama }}</option>
+                                                @foreach ($ustadz as $u)
+                                                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -278,32 +280,30 @@
     <script defer src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-
-    </script>
+    <script></script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({
                 columnDefs: [{
-                    target: 9,
-                    visible: false,
-                    searchable: false,
-                },{
-                    target: 10,
-                    visible: false,
-                    searchable: false,
-                },
-                {
-                    target: 11,
-                    visible: false,
-                    searchable: false,
-                },
-                {
-                    target: 12,
-                    visible: false,
-                    searchable: false,
-                }
-            ]
+                        target: 9,
+                        visible: false,
+                        searchable: false,
+                    }, {
+                        target: 10,
+                        visible: false,
+                        searchable: false,
+                    },
+                    {
+                        target: 11,
+                        visible: false,
+                        searchable: false,
+                    },
+                    {
+                        target: 12,
+                        visible: false,
+                        searchable: false,
+                    }
+                ]
 
             });
             $('#nisn').select2({

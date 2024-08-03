@@ -12,20 +12,30 @@ class DatasantriController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
 
         $santricount = Santri::count();
-        $santri = Santri::with('perizinan','user')->get();
-        $user   = User::where('role_id',3)->get();
-        return view('datasantri.index', ['santri' => $santri, 'santricount' => $santricount,'user'=>$user,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        $santri = Santri::with('perizinan', 'user')->get();
+        $user   = User::where('role_id', 3)->get();
+        return view('datasantri.index', ['santri' => $santri, 'santricount' => $santricount, 'user' => $user, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     public function store(Request $request)

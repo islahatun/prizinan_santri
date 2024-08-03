@@ -52,23 +52,15 @@
             </tr>
             <tr>
                 <td>Tanggal Pulang</td>
-                <td>: {{ date('d-m-Y',strtotime($data->tgl_pulang)) }}</td>
+                <td>: {{ date('d-m-Y', strtotime($data->tgl_pulang)) }}</td>
             </tr>
             <tr>
                 <td>Tanggal Kembali</td>
-                <td>: {{ date('d-m-Y',strtotime($data->tgl_balik)) }}</td>
+                <td>: {{ date('d-m-Y', strtotime($data->tgl_balik)) }}</td>
             </tr>
             <tr>
                 <td>Alasan Izin</td>
                 <td>: {{ $data->alasan_izin }}</td>
-            </tr>
-            <tr>
-                <td>Pemberi Izin</td>
-                <td>: {{ $data->user->name }}</td>
-            </tr>
-            <tr>
-                <td>Keterangan</td>
-                <td>: {{ $data->keterangan }}</td>
             </tr>
         </table>
 

@@ -80,7 +80,7 @@
                                     <td>{{ $item->tgl_pulang }}</td>
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
-                                    <td>{{  $item->user?$item->user->name:"" }}</td>
+                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
                                     <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
                                             class="btn btn-warning edit">Download
                                             Formulir</a></td>
