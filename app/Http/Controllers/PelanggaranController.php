@@ -15,20 +15,30 @@ class PelanggaranController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
         $pelanggarancount = pelanggaran::count();
         $pelanggaran = pelanggaran::get();
-        return view('pelanggaran.index', ['pelanggaran' => $pelanggaran, 'pelanggarancount' => $pelanggarancount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('pelanggaran.index', ['pelanggaran' => $pelanggaran, 'pelanggarancount' => $pelanggarancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
-       /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -48,19 +58,18 @@ class PelanggaranController extends Controller
     {
         // dd($request->all());
 
-            try {
-                DB::beginTransaction();
-                pelanggaran::create($request->all());
+        try {
+            DB::beginTransaction();
+            pelanggaran::create($request->all());
 
-                DB::commit();
-                Session::flash('message', 'perizinan berhasil');
-                Session::flash('alert-class', 'alert-success');
-                return redirect('/pelanggaran');
-            } catch (\Throwable $th) {
-                DB::rollBack();
-                dd($th);
-            }
-
+            DB::commit();
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/pelanggaran');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+        }
     }
 
     /**
@@ -99,9 +108,9 @@ class PelanggaranController extends Controller
             'skor_pelanggaran' => 'required',
 
         ]);
-        $data = $request->except('_token','_method','id');
+        $data = $request->except('_token', '_method', 'id');
 
-        pelanggaran::where('id',$request->id)->update($data);
+        pelanggaran::where('id', $request->id)->update($data);
 
         return redirect('/pelanggaran')->with('success', ' Data Berhasil DiPerbaharui ');
     }

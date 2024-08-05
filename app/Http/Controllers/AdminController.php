@@ -19,18 +19,28 @@ class AdminController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
-        $userCount = User::whereIn('role_id',[1,4])->count();
-        $user = User::whereIn('role_id',[1,4])->get();
-        return view('dataAdmin.index', ['user' => $user, 'userCount' => $userCount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        $userCount = User::whereIn('role_id', [1, 4])->count();
+        $user = User::whereIn('role_id', [1, 4])->get();
+        return view('dataAdmin.index', ['user' => $user, 'userCount' => $userCount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     /**
@@ -99,13 +109,13 @@ class AdminController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
-            'role_id'=> 'required',
+            'role_id' => 'required',
 
         ]);
-        $data = $request->except('_token','_method','id');
-        $data['password'] = Hash::make($request->password) ;
+        $data = $request->except('_token', '_method', 'id');
+        $data['password'] = Hash::make($request->password);
 
-        User::where('id',$request->id)->update($data);
+        User::where('id', $request->id)->update($data);
 
         return redirect('/dataAdmin')->with('success', ' Data Berhasil DiPerbaharui ');
     }

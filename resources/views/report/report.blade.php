@@ -56,7 +56,7 @@
                 <td>NO</td>
                 <td>SURAT</td>
                 <td>TANGGAL TES</td>
-                <td>NILAI</td>
+                <td>NILAI KELANCARAN</td>
                 <td>PRESTASI</td>
                 <td>KETERANGAN</td>
             </tr>

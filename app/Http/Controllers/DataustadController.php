@@ -13,19 +13,29 @@ class DataustadController extends Controller
 {
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
         $ustadcount = Ustad::count();
         $user = User::all();
         $ustad = Ustad::get();
-        return view('dataustad.index', ['ustad' => $ustad, 'user' => $user, 'ustadcount' => $ustadcount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('dataustad.index', ['ustad' => $ustad, 'user' => $user, 'ustadcount' => $ustadcount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     public function store(Request $request)
@@ -61,7 +71,7 @@ class DataustadController extends Controller
         $user->email = $request->input('email');
         $user->role_id = 2;
         $user->email_verified_at = $request->input('email_verified_at');
-        $user->password = Hash::make($request->input('password')) ;
+        $user->password = Hash::make($request->input('password'));
 
         $user->save();
 
@@ -97,12 +107,12 @@ class DataustadController extends Controller
 
         $data = [
             "name" => $request->input('name'),
-        "email" => $request->input('email'),
-        "email_verified_at" => $request->input('email_verified_at'),
-        "password" => Hash::make($request->input('password')),
+            "email" => $request->input('email'),
+            "email_verified_at" => $request->input('email_verified_at'),
+            "password" => Hash::make($request->input('password')),
         ];
 
-        User::where('ustad_id',$request->id)->update($data);
+        User::where('ustad_id', $request->id)->update($data);
 
         return redirect('/dataustad')->with('success', ' Data Berhasil Disimpan ');
     }

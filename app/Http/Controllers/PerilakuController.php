@@ -20,20 +20,30 @@ class PerilakuController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role_id == 3){
-            $count = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->count();
-            $countNotif = $count? $count:0;
-            $perizinanData = Perizinan::whereNotNull('keterangan')->where('user_id',Auth::user()->id)->get();
-        }else{
+        if (Auth::user()->role_id == 3) {
+            $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->count();
+
+            $countNotif = $count ? $count : 0;
+            $perizinanData = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+
+            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+                $query->where('orang_tua', Auth::user()->id);
+            })->get();
+        } else {
             $count = Perizinan::whereNull('keterangan')->count();
-            $countNotif = $count? $count:0;
+            $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
+            $perizinan = Perizinan::get();
         }
         $perilakuCount = Perilaku::count();
         $user = User::all();
         $santri = Santri::all();
         $perilaku = Perilaku::get();
-        return view('perilaku.index', ['perilaku' => $perilaku,'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount,'countNotif'=>$countNotif,'perizinanData'=>$perizinanData]);
+        return view('perilaku.index', ['perilaku' => $perilaku, 'santri' => $santri, 'user' => $user, 'perilakuCount' => $perilakuCount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
     }
 
     /**
@@ -108,9 +118,9 @@ class PerilakuController extends Controller
             'nilai_sopan_santun' => 'required',
             'nilai_istikomah' => 'required',
         ]);
-        $data = $request->except('_token','_method','id');
+        $data = $request->except('_token', '_method', 'id');
 
-        Perilaku::where('id',$request->id)->update($data);
+        Perilaku::where('id', $request->id)->update($data);
 
         return redirect('/perilaku')->with('success', ' Data Berhasil DiPerbaharui ');
     }
