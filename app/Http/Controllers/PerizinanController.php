@@ -98,6 +98,7 @@ class PerizinanController extends Controller
                     DB::beginTransaction();
                     $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
                     $izindata->keterangan = $request->input('keterangan');
+                    $izindata->user_id = $request->input('user_id');
                     $izindata->save();
 
                     $santri = Santri::findOrFail($request->santri_id);

@@ -118,8 +118,8 @@
                             @foreach ($perizinan as $item)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $item->santri->nisn }}</td>
-                                    <td>{{ $item->santri->nama }}</td>
+                                    <td>{{ $item->santri?$item->santri->nisn:"" }}</td>
+                                    <td>{{ $item->santri?$item->santri->nama:"" }}</td>
                                     <td>{{ $item->tgl_pulang }}</td>
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
