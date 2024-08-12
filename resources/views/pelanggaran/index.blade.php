@@ -47,6 +47,11 @@
                                 <p>{{ \Session::get('success') }}</p>
                             </div>
                         @endif
+                        @if (\Session::has('danger'))
+                            <div class="alert alert-danger">
+                                <p>{{ \Session::get('danger') }}</p>
+                            </div>
+                        @endif
                         <button type="button" class="btn btn-primary text-black fw-semibold" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Tambah Data +
@@ -74,7 +79,11 @@
                                     <td>{{ $item->skor_pelanggaran }}</td>
                                     <td>{{ $item->id }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning edit">Edit</a>
+
+                                        <form action="/pelanggaran-delete/{{ $item->id }}" method="get">
+                                            <a href="#" class="btn btn-warning edit">Edit</a>
+                                            <button class="btn btn-danger" type="submit"> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -138,13 +147,13 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="">Nama Pelanggaran</label>
-                                            <input type="text" name="nama_pelanggaran" id="nama_pelanggaran" class="form-control"
-                                                placeholder="Masukkan nama pelanggaran">
+                                            <input type="text" name="nama_pelanggaran" id="nama_pelanggaran"
+                                                class="form-control" placeholder="Masukkan nama pelanggaran">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Skor Pelanggaran</label>
-                                            <input type="number" name="skor_pelanggaran" id="skor_pelanggaran" class="form-control"
-                                                placeholder="Masukkan Nilai skor pelanggaran">
+                                            <input type="number" name="skor_pelanggaran" id="skor_pelanggaran"
+                                                class="form-control" placeholder="Masukkan Nilai skor pelanggaran">
                                         </div>
 
                                     </div>
@@ -166,9 +175,7 @@
     <script defer src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-
-    </script>
+    <script></script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({
@@ -176,8 +183,7 @@
                     target: 3,
                     visible: false,
                     searchable: false,
-                },
-            ]
+                }, ]
 
             });
             $('#nisn').select2({

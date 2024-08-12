@@ -131,8 +131,13 @@ class LaporanPelanggaranController extends Controller
      * @param  \App\Models\Laporan_pelanggaran  $laporan_pelanggaran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laporan_pelanggaran $laporan_pelanggaran)
+    public function destroy($id)
     {
-        //
+        $result = Laporan_pelanggaran::where('id',$id)->delete();
+        if($result){
+            return redirect('/pelanggaranSantri')->with('success', ' Data Berhasil dihapus');
+        }else{
+            return redirect('/pelanggaranSantri')->with('danger', ' Data gagal dihapus');
+        }
     }
 }

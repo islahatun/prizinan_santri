@@ -86,7 +86,10 @@
                                     <td>{{ $item->id_santri }}</td>
                                     <td>{{ $item->id_pelanggaran }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning edit">Edit</a>
+                                        <form action="/pelanggaranSantri-delete/{{ $item->id }}" method="get">
+                                            <a href="#" class="btn btn-warning edit">Edit</a>
+                                            <button class="btn btn-danger" type="submit"> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -131,6 +131,12 @@ class HafalanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Hafalan::where('id',$id)->delete();
+        if($result){
+            return redirect('/hafalan')->with('success', ' Data Berhasil dihapus');
+        }else{
+            return redirect('/hafalan')->with('danger', ' Data gagal dihapus');
+        }
+
     }
 }

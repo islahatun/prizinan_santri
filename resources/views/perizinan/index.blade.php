@@ -69,6 +69,7 @@
                                 <th scope="col">ALASAN IZIN</th>
                                 <th scope="col">TERTANDA</th>
                                 <th>AKSI</th>
+                                <th>id santri</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,10 +82,16 @@
                                     <td>{{ $item->tgl_balik }}</td>
                                     <td>{{ $item->alasan_izin }}</td>
                                     <td>{{ $item->user ? $item->user->name : '' }}</td>
-                                    <td><a href="/pelaporan-download/{{ $item->id }}" target="blank"
-                                            class="btn btn-warning edit">Download
-                                            Formulir</a></td>
-
+                                    <td>
+                                            <form action="/perizinan-delete/{{ $item->id }}" method="get">
+                                                <a href="/pelaporan-download/{{ $item->id }}" target="blank"
+                                                    class="btn btn-success">Download
+                                                    Formulir</a>
+                                                <a href="#" class="btn btn-warning edit">Edit</a>
+                                                <button class="btn btn-danger" type="submit"> Hapus</button>
+                                            </form>
+                                    </td>
+                                    <td>{{ $item->santri->id }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -151,6 +158,67 @@
                         </div>
                     </div>
                     <!-- end modal tambah -->
+
+
+                     <!-- Modal edit data -->
+                     <div class="modal fade form_modal" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data santri</h1>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                     aria-label="Close"></button>
+                             </div>
+                             <form action="/perizinan-update" method="POST" id="editForm">
+                                @csrf
+                                {{ method_field('PUT') }}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="">Nama</label>
+                                        <div>
+                                            <select name="santri_id" id="santri" class="form-control inputbox">
+                                                <option value="null">--pilih Santri--</option>
+                                                @foreach ($santri as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tanggal Pulang</label>
+                                        <input readonly type="date" name="tgl_pulang" value="{{ $tgl_pulang }}"
+                                            class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Tanggal Balik</label>
+                                        <input type="date" name="tgl_balik" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Alasan izin</label>
+                                        <input type="text" name="alasan_izin" class="form-control"
+                                            placeholder="Masukkan alasan izin">
+                                    </div>
+                                    {{-- <div class="form-group">
+                                        <label for="">Tertanda</label>
+                                        <select name="user_id" id="" class="form-control inputbox">
+                                            <option value="">--pilih Pemberi--</option>
+                                            @foreach ($user as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- end modal edit -->
                 </div>
             </div>
         </div>
@@ -173,7 +241,36 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#tabel1').DataTable({});
+            var table = $('#tabel1').DataTable({
+                columnDefs: [{
+                    target: 7,
+                    visible: false,
+                    searchable: false,
+                }, ]
+            });
+
+            table.on('click', '.edit', function() {
+
+$tr = $(this).closest('tr');
+if ($($tr).hasClass('child')) {
+    $tr = $tr.prev('.parent');
+}
+
+var data = table.row($tr).data();
+$('#id').val(data[9]);
+$('#santri_id').val(data[11]);
+$('#surah_id').val(data[12]);
+$('#tanggal').val(data[4]);
+$('#tajwid').val(data[5]);
+$('#makhroj').val(data[6]);
+$('#nilai').val(data[7]);
+$('#ustadz_id').val(data[10]);
+$('#catatan').val(data[13]);
+
+
+$('#editForm').attr('action', '/hafalan-update');
+$('#editModal').modal('show');
+});
         });
     </script>
 @endsection

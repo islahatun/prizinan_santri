@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan_pelanggaran;
 use App\Models\User;
 use App\Models\Santri;
 use App\Models\Perizinan;
@@ -123,6 +124,12 @@ class PelanggaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $laporan = Laporan_pelanggaran::where('id_pelanggaran',$id)->first();
+        if($laporan){
+            return redirect('/pelanggaran')->with('danger', ' Data sudah digunakan, tidak dapat dihapus');
+        }else{
+            pelanggaran::where('id',$id)->delete();
+            return redirect('/pelanggaran')->with('success', ' Data berhasil dihapus');
+        }
     }
 }

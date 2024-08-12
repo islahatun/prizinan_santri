@@ -47,6 +47,11 @@
                                 <p>{{ \Session::get('success') }}</p>
                             </div>
                         @endif
+                        @if (\Session::has('danger'))
+                        <div class="alert alert-danger">
+                            <p>{{ \Session::get('danger') }}</p>
+                        </div>
+                    @endif
                         <button type="button" class="btn btn-primary text-black fw-semibold" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Tambah Data +
@@ -94,7 +99,10 @@
                                     <td>{{ $item->surah_id }}</td>
                                     <td>{{ $item->catatan }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning edit">Edit</a>
+                                        <form action="/hafalan-delete/{{ $item->id }}" method="get">
+                                            <a href="#" class="btn btn-warning edit">Edit</a>
+                                            <button class="btn btn-danger" type="submit"> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -118,33 +118,11 @@ class PerizinanController extends Controller
                 Session::flash('message', 'pelaporan berhasil');
                 Session::flash('alert-class', 'alert-success');
                 return redirect('/pelaporan');
-<<<<<<< HEAD
-            } else {
-                try {
-                    DB::beginTransaction();
-                    $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
-                    $izindata->keterangan = $request->input('keterangan');
-                    $izindata->user_id = $request->input('user_id');
-                    $izindata->save();
 
-                    $santri = Santri::findOrFail($request->santri_id);
-                    $santri->status = 'bpulang';
-                    $santri->save();
-                    DB::commit();
-                    Session::flash('message', 'pelaporan berhasil');
-                    Session::flash('alert-class', 'alert-success');
-                    return redirect('/pelaporan');
-                } catch (\Throwable $th) {
-                    //throw $th;
-                    DB::rollBack();
-                    dd($th);
-                }
-=======
             } catch (\Throwable $th) {
                 //throw $th;
                 DB::rollBack();
-                dd($th);
->>>>>>> 7cd23cc32b0bc49d4ce923710ded7cff1a8b07f7
+
             }
         }
         // } else {
@@ -165,5 +143,16 @@ class PerizinanController extends Controller
         $pdf = PDF::loadView('report.formulir', $content);
 
         return $pdf->stream('formulir--' . $perizinan->santri->nama . '.pdf');
+    }
+
+    public function destroy($id){
+        $perizinan = Perizinan::where('id',$id)->delete();
+        if($perizinan){
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+        }else{
+            Session::flash('message', 'perizinan gagal diapus');
+            Session::flash('alert-class', 'alert-danger');
+        }
     }
 }

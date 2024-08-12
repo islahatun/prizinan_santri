@@ -131,8 +131,13 @@ class PerilakuController extends Controller
      * @param  \App\Models\Perilaku  $perilaku
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perilaku $perilaku)
+    public function destroy($id)
     {
-        //
+        $result = Perilaku::where('id',$id)->delete();
+        if($result){
+            return redirect('/perilaku')->with('success', ' Data Berhasil dihapus');
+        }else{
+            return redirect('/perilaku')->with('danger', ' Data gagal dihapus');
+        }
     }
 }

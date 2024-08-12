@@ -45,6 +45,8 @@ Route::put('/dataustad-edit', [\App\Http\Controllers\DataustadController::class,
 
 Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index'])->name('perizinan');
 Route::post('/perizinan-add', [\App\Http\Controllers\PerizinanController::class, 'store'])->name('perizinan-add');
+Route::put('/perizinan-update/{id}', [\App\Http\Controllers\PerizinanController::class, 'update'])->name('perizinan-update');
+Route::put('/perizinan-delete/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy'])->name('perizinan-delete');
 
 Route::get('/pelaporan', [\App\Http\Controllers\PerizinanController::class, 'pelaporanview'])->name('pelaporan');
 Route::post('/pelaporan-add', [\App\Http\Controllers\PerizinanController::class, 'storepelaporan'])->name('pelaporan-add');
@@ -53,18 +55,22 @@ Route::get('/pelaporan-download/{id}', [\App\Http\Controllers\PerizinanControlle
 Route::get('/pelanggaran', [\App\Http\Controllers\PelanggaranController::class, 'index'])->name('pelanggaran');
 Route::post('/pelanggaran-add', [\App\Http\Controllers\PelanggaranController::class, 'store'])->name('pelanggaranAdd');
 Route::put('/pelanggaran-update', [\App\Http\Controllers\PelanggaranController::class, 'update'])->name('pelanggaranUpdate');
+Route::get('/pelanggaran-delete/{id}', [\App\Http\Controllers\PelanggaranController::class, 'destroy'])->name('pelanggaranDelete');
 
 Route::get('/pelanggaranSantri', [\App\Http\Controllers\LaporanPelanggaranController::class, 'index'])->name('pelanggaranSantri');
 Route::post('/pelanggaranSantri-add', [\App\Http\Controllers\LaporanPelanggaranController::class, 'store'])->name('pelanggaranSantriAdd');
+Route::get('/pelanggaranSantri-delete/{id}', [\App\Http\Controllers\LaporanPelanggaranController::class, 'destroy'])->name('pelanggaranSantriDelete');
 Route::put('/pelanggaranSantri-update', [\App\Http\Controllers\LaporanPelanggaranController::class, 'update'])->name('pelanggaranSantriUpdate');
 
 Route::get('/hafalan', [\App\Http\Controllers\HafalanController::class, 'index'])->name('hafalan');
 Route::post('/hafalan-add', [\App\Http\Controllers\HafalanController::class, 'store'])->name('hafalanAdd');
 Route::put('/hafalan-update', [\App\Http\Controllers\HafalanController::class, 'update'])->name('hafalanUpdate');
+Route::get('/hafalan-delete/{id}', [\App\Http\Controllers\HafalanController::class, 'destroy'])->name('hafalanDelete');
 
 Route::get('/perilaku', [\App\Http\Controllers\PerilakuController::class, 'index'])->name('perilaku');
 Route::post('/perilaku-add', [\App\Http\Controllers\PerilakuController::class, 'store'])->name('perilakuAdd');
 Route::put('/perilaku-update', [\App\Http\Controllers\PerilakuController::class, 'update'])->name('perilakuUpdate');
+Route::get('/perilaku-delete/{id}', [\App\Http\Controllers\PerilakuController::class, 'destroy'])->name('perilakuDelete');
 
 Route::get('/report', [\App\Http\Controllers\ReportController::class, 'index'])->name('report');
 Route::get('/report-data/{id}', [\App\Http\Controllers\ReportController::class, 'report'])->name('reportData');

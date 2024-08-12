@@ -113,8 +113,8 @@
 
                             <!-- @if (Route::has('register'))
     <li class="nav-item">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
     @endif -->
                         @else
                             <li class="nav-item dropdown">
@@ -292,8 +292,9 @@
                                             <span class="fs-5 d-none d-sm-inline ms-4">PELAPORAN</span>
                                         </a>
                                     </li>
-                                    <li class="list-group-item {{ request()->is('pelanggaran') ? 'active' : '' }}">
-                                        <a href="{{ route('pelanggaran') }}"
+                                    <li
+                                        class="list-group-item {{ request()->is('pelanggaranSantri') ? 'active' : '' }}">
+                                        <a href="{{ route('pelanggaranSantri') }}"
                                             class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 fill="currentColor" class="bi bi-clipboard2-x" viewBox="0 0 16 16">
