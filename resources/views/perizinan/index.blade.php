@@ -177,7 +177,7 @@
                                     {{ method_field('PUT') }}
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input type="text" name="id" value="" id="id"
+                                            <input type="hidden" name="id" value="" id="id"
                                                 class="form-control">
                                             <label for="">Nama</label>
                                             <div>
