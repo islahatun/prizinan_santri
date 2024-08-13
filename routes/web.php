@@ -45,8 +45,8 @@ Route::put('/dataustad-edit', [\App\Http\Controllers\DataustadController::class,
 
 Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index'])->name('perizinan');
 Route::post('/perizinan-add', [\App\Http\Controllers\PerizinanController::class, 'store'])->name('perizinan-add');
-Route::put('/perizinan-update/{id}', [\App\Http\Controllers\PerizinanController::class, 'update'])->name('perizinan-update');
-Route::put('/perizinan-delete/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy'])->name('perizinan-delete');
+Route::put('/perizinan-update', [\App\Http\Controllers\PerizinanController::class, 'update'])->name('perizinan-update');
+Route::get('/perizinan-delete/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy'])->name('perizinan-delete');
 
 Route::get('/pelaporan', [\App\Http\Controllers\PerizinanController::class, 'pelaporanview'])->name('pelaporan');
 Route::post('/pelaporan-add', [\App\Http\Controllers\PerizinanController::class, 'storepelaporan'])->name('pelaporan-add');

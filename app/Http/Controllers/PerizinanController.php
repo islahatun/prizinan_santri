@@ -69,6 +69,34 @@ class PerizinanController extends Controller
         }
     }
 
+    public function update(Request $request)
+    {
+        // dd($request->all());
+        $data = $request->except('_token', '_method', 'id');
+        $santri = Santri::findOrFail($request->santri_id)->only('status');
+        if ($santri['status'] != 'bpulang') {
+            Session::flash('message', 'tidak bisa pulang karena sedang dalam perizinan');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('/perizinan');
+        } else {
+            try {
+                DB::beginTransaction();
+                Perizinan::where('id',$request->id)->update($data);
+
+                $santri = Santri::findOrFail($request->santri_id);
+                $santri->status = 'tbpulang';
+                $santri->save();
+                DB::commit();
+                Session::flash('message', 'perizinan berhasil');
+                Session::flash('alert-class', 'alert-success');
+                return redirect('/perizinan');
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                dd($th);
+            }
+        }
+    }
+
     public function pelaporanview()
     {
         if (Auth::user()->role_id == 3) {
@@ -150,9 +178,11 @@ class PerizinanController extends Controller
         if($perizinan){
             Session::flash('message', 'perizinan berhasil');
             Session::flash('alert-class', 'alert-success');
+            return redirect('/perizinan');
         }else{
             Session::flash('message', 'perizinan gagal diapus');
             Session::flash('alert-class', 'alert-danger');
+            return redirect('/perizinan');
         }
     }
 }

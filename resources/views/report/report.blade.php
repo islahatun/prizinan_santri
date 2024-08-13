@@ -68,11 +68,11 @@
                         <td>{{ $h->tanggal }}</td>
                         <td>{{ $h->nilai }}</td>
                         <td>
-                            @if ($h->nilai < 60)
+                            @if ($h->nilai <= 60)
                                 D
-                            @elseif ($h->nilai > 60 && $h->nilai < 75)
+                            @elseif ($h->nilai > 60 && $h->nilai <= 75)
                                 C
-                            @elseif ($h->nilai > 75 && $h->nilai < 90)
+                            @elseif ($h->nilai > 75 && $h->nilai <= 90)
                                 B
                             @elseif ($h->nilai > 90)
                                 A
@@ -81,11 +81,11 @@
                         <td>
                             @if ($h->nilai < 60)
                                 KURANG
-                            @elseif ($h->nilai > 60 && $h->nilai < 75)
+                            @elseif ($h->nilai > 60 && $h->nilai <= 75)
                                 CUKUP
-                            @elseif ($h->nilai > 75 && $h->nilai < 90)
+                            @elseif ($h->nilai > 75 && $h->nilai <= 90)
                                 BAIK
-                            @elseif ($h->nilai > 90)
+                            @elseif ($h->nilai >= 90)
                                 SANGAT BAIK
                             @endif
                         </td>

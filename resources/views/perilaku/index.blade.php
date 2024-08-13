@@ -47,6 +47,11 @@
                                 <p>{{ \Session::get('success') }}</p>
                             </div>
                         @endif
+                        @if (\Session::has('danger'))
+                            <div class="alert alert-danger">
+                                <p>{{ \Session::get('danger') }}</p>
+                            </div>
+                        @endif
                         <button type="button" class="btn btn-primary text-black fw-semibold" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Tambah Data +
@@ -86,7 +91,10 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->id_santri }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning edit">Edit</a>
+                                        <form action="/perilaku-delete/{{ $item->id }}" method="get">
+                                            <a href="#" class="btn btn-warning edit">Edit</a>
+                                            <button class="btn btn-danger" type="submit"> Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
