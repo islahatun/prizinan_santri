@@ -53,7 +53,7 @@ class PerizinanController extends Controller
             ]
         ];
 
-        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData,'alasanIzin'=>$alasanIzin]);
+        return view('perizinan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'perizinancount' => $perizinancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData, 'alasanIzin' => $alasanIzin]);
     }
 
     public function store(Request $request)
@@ -93,21 +93,21 @@ class PerizinanController extends Controller
         //     Session::flash('alert-class', 'alert-danger');
         //     return redirect('/perizinan');
         // } else {
-            try {
-                DB::beginTransaction();
-                Perizinan::where('id', $request->id)->update($data);
+        try {
+            DB::beginTransaction();
+            Perizinan::where('id', $request->id)->update($data);
 
-                $santri = Santri::findOrFail($request->santri_id);
-                $santri->status = 'tbpulang';
-                $santri->save();
-                DB::commit();
-                Session::flash('message', 'perizinan berhasil');
-                Session::flash('alert-class', 'alert-success');
-                return redirect('/perizinan');
-            } catch (\Throwable $th) {
-                DB::rollBack();
-                dd($th);
-            }
+            $santri = Santri::findOrFail($request->santri_id);
+            $santri->status = 'tbpulang';
+            $santri->save();
+            DB::commit();
+            Session::flash('message', 'perizinan berhasil');
+            Session::flash('alert-class', 'alert-success');
+            return redirect('/perizinan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+        }
         // }
     }
 
@@ -125,7 +125,7 @@ class PerizinanController extends Controller
         $santricount = Santri::count();
         $perizinancount = Perizinan::count();
         $pelanggarancount = Perizinan::where('keterangan', '=', 'Ditolak')->count();
-        $user = User::whereNotNull('ustad_id')->get();
+        $user = Auth::user()->id;
         $santri = Santri::all();
         $perizinan = Perizinan::get();
         return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
@@ -140,7 +140,7 @@ class PerizinanController extends Controller
         // dd($izincount);
 
         if ($izincount == 1) {
-            $santri = Santri::findOrFail($request->santri_id)->only('status');
+            $santri = Santri::findOrFail($izindata->santri_id)->only('status');
             // if ($santri['status'] != 'tbpulang') {
             //     Session::flash('message', 'tidak bisa melakukan pelaporan karena kesalahan data');
             //     Session::flash('alert-class', 'alert-danger');
@@ -150,10 +150,10 @@ class PerizinanController extends Controller
                 DB::beginTransaction();
                 $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
                 $izindata->keterangan = $request->input('keterangan');
-                $izindata->user_id = $request->input('user_id');
+                $izindata->user_id = Auth::user()->id;
                 $izindata->save();
 
-                $santri = Santri::findOrFail($request->santri_id);
+                $santri = Santri::findOrFail($izindata->santri_id);
                 $santri->status = 'bpulang';
                 $santri->save();
                 DB::commit();
