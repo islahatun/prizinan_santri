@@ -127,8 +127,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Tanggal Pulang</label>
-                                            <input readonly type="date" name="tgl_pulang" value="{{ $tgl_pulang }}"
+                                            <label for="">Tanggal Izin</label>
+                                            <input type="date" name="tgl_pulang" value="{{ $tgl_pulang }}"
                                                 class="form-control">
                                         </div>
                                         <div class="form-group">
@@ -137,8 +137,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Alasan izin</label>
-                                            <input type="text" name="alasan_izin" class="form-control"
-                                                placeholder="Masukkan alasan izin">
+                                            <select class="form-control" onchange="alasanIzin(this)" name="alasan_izin">
+                                                <option value="null">--pilih Alasan Izin--</option>
+                                                @foreach ($alasanIzin as $ai)
+                                                    <option value="{{ $ai['alasan'] }}">{{ $ai['alasan'] }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="text" name="alasan_izin" class="form-control mt-3"
+                                                id="alasanIzinCreate" placeholder="Masukkan alasan izin">
                                         </div>
                                         {{-- <div class="form-group">
                                             <label for="">Tertanda</label>
@@ -190,8 +196,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Tanggal Pulang</label>
-                                            <input readonly type="date" name="tgl_pulang" id="tgl_pulang"
+                                            <label for="">Tanggal Izin</label>
+                                            <input type="date" name="tgl_pulang" id="tgl_pulang"
                                                 class="form-control">
                                         </div>
                                         <div class="form-group">
@@ -200,8 +206,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Alasan izin</label>
-                                            <input type="text" name="alasan_izin" id="alasan_izin" class="form-control"
-                                                placeholder="Masukkan alasan izin">
+                                            <select class="form-control" id="alasanIzinUpdate"
+                                                onchange="alasanIzinEdit(this)" name="alasan_izin">
+                                                <option value="null">--pilih Alasan Izin--</option>
+                                                @foreach ($alasanIzin as $ai)
+                                                    <option value="{{ $ai['alasan'] }}">{{ $ai['alasan'] }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="text" name="alasan_izin" id="alasan_izin"
+                                                class="form-control mt-3" placeholder="Masukkan alasan izin">
                                         </div>
                                         {{-- <div class="form-group">
                                         <label for="">Tertanda</label>
@@ -236,6 +249,8 @@
     <script>
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {
+            $('#alasanIzinCreate').hide();
+            $('#alasanIzin').hide();
             $('#santri').select2({
                 dropdownParent: $('#exampleModal'),
                 width: "100%"
@@ -245,6 +260,27 @@
                 width: "100%"
             });
         });
+
+        function alasanIzin(obj) {
+            var value = obj.value;
+            if (value == "Lainnya") {
+                $('#alasanIzinCreate').show();
+            } else {
+                $('#alasanIzinCreate').hide();
+
+            }
+        }
+
+        function alasanIzinEdit(obj) {
+            var value = obj.value;
+
+            if (value == "Lainnya") {
+                $('#alasan_izin').show();
+            } else {
+                $('#alasan_izin').hide();
+                $('#alasan_izin').val(value);
+            }
+        }
     </script>
 
     <script type="text/javascript">
@@ -273,7 +309,16 @@
                 $('#santri_id').val(data[8]);
                 $('#tgl_pulang').val(data[3]);
                 $('#tgl_balik').val(data[4]);
-                $('#alasan_izin').val(data[5]);
+                var value = data[5];
+                if (value == "Acara Pondok" || value == "Acara Keluarga" || value == "Sakit") {
+                    $('#alasanIzinUpdate').val(value)
+                    $('#alasan_izin').hide();
+                } else {
+                    $('#alasanIzinUpdate').val('Lainnya')
+                    $('#alasan_izin').show();
+                    $('#alasan_izin').val(data[5]);
+
+                }
 
 
                 $('#editForm').attr('action', '/perizinan-update');
