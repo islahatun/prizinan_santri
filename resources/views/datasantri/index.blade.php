@@ -72,9 +72,12 @@
                                 <th scope="col">KELAS</th>
                                 <th scope="col">NAMA WALI</th>
                                 <th scope="col">NO HP</th>
+                                <th scope="col">TANGGAL MASUK</th>
                                 <th scope="col">STATUS</th>
-                                <th scope="col">AKSI</th>
                                 <th scope="col">ID WALI</th>
+                                <th scope="col">AKSI</th>
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -89,8 +92,9 @@
                                     <td>{{ $item->tempat_lahir }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->kelas }}</td>
-                                    <td>{{ $item->user?$item->user->name:"" }}</td>
+                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
                                     <td>{{ $item->no_telepon }}</td>
+                                    <td>{{ $item->tgl_masuk }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>{{ $item->orang_tua }}</td>
                                     <td>
@@ -153,15 +157,20 @@
                                                 placeholder="Masukkan kelas">
                                         </div>
                                         <div class="form-group">
+                                            <label for="">Tanggal Masuk</label>
+                                            <input type="date" name="tgl_masuk" class="form-control"
+                                                placeholder="Masukkan Tanggal Masuk">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="">Orang tua</label>
                                             {{-- <input type="text" name="orang_tua" class="form-control"
                                                 placeholder="Masukkan nama orang tua"> --}}
-                                                <select name="orang_tua" class="form-control orang_tua">
-                                                    <option value=""></option>
-                                                    @foreach ($user as $u )
-                                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <select name="orang_tua" class="form-control orang_tua">
+                                                <option value=""></option>
+                                                @foreach ($user as $u)
+                                                    <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nomor Telepon</label>
@@ -246,15 +255,20 @@
                                                 placeholder="Masukkan kelas">
                                         </div>
                                         <div class="form-group">
+                                            <label for="">Tanggal Masuk</label>
+                                            <input type="date" name="tgl_masuk" id="tgl_masuk" class="form-control"
+                                                placeholder="Masukkan Tanggal Masuk">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="">Orang tua</label>
                                             {{-- <input type="text" name="orang_tua" id="orang_tua" class="form-control"
                                                 placeholder="Masukkan nama orang tua"> --}}
-                                                <select name="orang_tua" id="orang_tua" class="form-control orang_tua">
-                                                    <option value=""></option>
-                                                    @foreach ($user as $u )
-                                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <select name="orang_tua" id="orang_tua" class="form-control orang_tua">
+                                                <option value=""></option>
+                                                @foreach ($user as $u)
+                                                    <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nomor Telepon</label>
@@ -291,7 +305,6 @@
     <script defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
-  
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({
                 columnDefs: [{
@@ -315,11 +328,11 @@
                     visible: false,
                     searchable: false,
                 }, {
-                    target: 11,
+                    target: 12,
                     visible: false,
                     searchable: false,
-                },{
-                    target: 12,
+                }, {
+                    target: 13,
                     visible: false,
                     searchable: false,
                 }, ],
@@ -333,6 +346,7 @@
                 if ($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');
                 }
+                
 
                 var data = table.row($tr).data();
                 console.log(data);
@@ -344,9 +358,10 @@
                 $('#tempat_lahir').val(data[6]);
                 $('#alamat').val(data[7]);
                 $('#kelas').val(data[8]);
-                $('#orang_tua').val(data[12]);
+                $('#orang_tua').val(data[13]);
                 $('#no_telepon').val(data[10]);
-                $('#status').val(data[11]);
+                $('#status').val(data[12]);
+                $('#tgl_masuk').val(data[11]);
                 $('#editForm').attr('action', '/datasantri-edit');
                 $('#editModal').modal('show');
             });

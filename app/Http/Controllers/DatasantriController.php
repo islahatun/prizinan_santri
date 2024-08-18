@@ -64,6 +64,7 @@ class DatasantriController extends Controller
         $santri->kelas = $request->input('kelas');
         $santri->orang_tua = $request->input('orang_tua');
         $santri->no_telepon = $request->input('no_telepon');
+        $santri->tgl_masuk = $request->input('tgl_masuk');
         $santri->status = $request->input('status');
 
         $santri->save();
@@ -94,6 +95,7 @@ class DatasantriController extends Controller
         $santri->kelas = $request->input('kelas');
         $santri->orang_tua = $request->input('orang_tua');
         $santri->no_telepon = $request->input('no_telepon');
+        $santri->tgl_masuk = $request->input('tgl_masuk');
         $santri->status = $request->input('status');
 
         $santri->update();
