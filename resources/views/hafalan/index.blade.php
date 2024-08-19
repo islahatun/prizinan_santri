@@ -136,7 +136,7 @@
 
                                         <div class="form-group">
                                             <label for="">SURAT</label>
-                                            {{-- <input type="number" name="juz_id" class="form-control"> --}}
+                                            {{-- <input type="number" max="100" name="juz_id" class="form-control"> --}}
                                             <select class="form-select surat_id" name="surah_id"
                                                 aria-label="Default select example">
                                                 <option selected>Pilih Surat</option>
@@ -152,7 +152,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tajwid</label>
-                                            <input type="number" name="tajwid" class="form-control"
+                                            <input type="number" max="100" name="tajwid" class="form-control"
                                                 placeholder="Masukkan Nilai Tajwid">
                                         </div>
                                         <div class="form-group">
@@ -163,7 +163,7 @@
 
                                         <div class="form-group">
                                             <label for="">Nilai KELANCARAN</label>
-                                            <input type="number" name="nilai" class="form-control"
+                                            <input type="number" max="100" name="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
                                         </div>
                                         <div class="form-group">
@@ -224,7 +224,7 @@
 
                                         <div class="form-group">
                                             <label for="">SURAT</label>
-                                            {{-- <input id="surat_id" type="number" name="surat_id" class="form-control"> --}}
+                                            {{-- <input id="surat_id" type="number" max="100" name="surat_id" class="form-control"> --}}
                                             <select class="form-select surat_id" name="surah_id" id="surah_id"
                                                 aria-label="Default select example">
                                                 <option selected>Pilih Nisn</option>
@@ -240,7 +240,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Tajwid</label>
-                                            <input type="number" name="tajwid" id="tajwid" class="form-control"
+                                            <input type="number" max="100" name="tajwid" id="tajwid" class="form-control"
                                                 placeholder="Masukkan Nilai Tajwid">
                                         </div>
                                         <div class="form-group">
@@ -251,7 +251,7 @@
 
                                         <div class="form-group">
                                             <label for="">Nilai Kelancaran </label>
-                                            <input type="number" name="nilai" id="nilai" class="form-control"
+                                            <input type="number" max="100" name="nilai" id="nilai" class="form-control"
                                                 placeholder="Masukkan Nilai">
                                         </div>
                                         <div class="form-group">

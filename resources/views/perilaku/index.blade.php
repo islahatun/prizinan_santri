@@ -117,7 +117,7 @@
 
                                         <div class="form-group">
                                             <label for="">Nama Santri</label>
-                                            {{-- <input type="number" name="skor_pelanggaran" id="skor_pelanggaran" class="form-control"
+                                            {{-- <input type="number" max="100" name="skor_pelanggaran" id="skor_pelanggaran" class="form-control"
                                                 placeholder="Masukkan Nilai skor pelanggaran"> --}}
                                                 <select name="id_santri" class="form-control">
                                                     <option value=""></option>
@@ -128,27 +128,27 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Jujur</label>
-                                            <input type="number" name="nilai_jujur" class="form-control"
-                                                placeholder="Masukkan Nilai Jujur">
+                                            <input type="number" max="100" name="nilai_jujur" class="form-control"
+                                                placeholder="Masukkan Nilai Jujur" max="100">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Rajin</label>
-                                            <input type="number" name="nilai_rajin" class="form-control"
+                                            <input type="number" max="100" name="nilai_rajin" class="form-control"
                                                 placeholder="Masukkan Nilai Rajin ">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Bersih</label>
-                                            <input type="number" name="nilai_bersih" class="form-control"
+                                            <input type="number" max="100" name="nilai_bersih" class="form-control"
                                                 placeholder="Masukkan Nilai Bersih">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Sopan Santun</label>
-                                            <input type="number" name="nilai_sopan_santun"  class="form-control"
+                                            <input type="number" max="100" name="nilai_sopan_santun"  class="form-control"
                                                 placeholder="Masukkan Nilai Sopan Santun ">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Istikomah</label>
-                                            <input type="number" name="nilai_istikomah"class="form-control"
+                                            <input type="number" max="100" name="nilai_istikomah"class="form-control"
                                                 placeholder="Masukkan Nilai Istikomah ">
                                         </div>
 
@@ -184,7 +184,7 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="">Nama Santri</label>
-                                            {{-- <input type="number" name="skor_pelanggaran" id="skor_pelanggaran" class="form-control"
+                                            {{-- <input type="number" max="100" name="skor_pelanggaran" id="skor_pelanggaran" class="form-control"
                                                 placeholder="Masukkan Nilai skor pelanggaran"> --}}
                                                 <select name="id_santri" id="id_santri" class="form-control">
                                                     <option value=""></option>
@@ -195,27 +195,27 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Jujur</label>
-                                            <input type="number" name="nilai_jujur" id="nilai_jujur" class="form-control"
+                                            <input type="number" max="100" name="nilai_jujur" id="nilai_jujur" class="form-control"
                                                 placeholder="Masukkan Nilai Jujur">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Rajin</label>
-                                            <input type="number" name="nilai_rajin" id="nilai_rajin" class="form-control"
+                                            <input type="number" max="100" name="nilai_rajin" id="nilai_rajin" class="form-control"
                                                 placeholder="Masukkan Nilai Rajin ">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Bersih</label>
-                                            <input type="number" name="nilai_bersih" id="nilai_bersih" class="form-control"
+                                            <input type="number" max="100" name="nilai_bersih" id="nilai_bersih" class="form-control"
                                                 placeholder="Masukkan Nilai Bersih">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Sopan Santun</label>
-                                            <input type="number" name="nilai_sopan_santun" id="nilai_sopan_santun" class="form-control"
+                                            <input type="number" max="100" name="nilai_sopan_santun" id="nilai_sopan_santun" class="form-control"
                                                 placeholder="Masukkan Nilai Sopan Santun ">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Nilai Istikomah</label>
-                                            <input type="number" name="nilai_istikomah" id="nilai_istikomah" class="form-control"
+                                            <input type="number" max="100" name="nilai_istikomah" id="nilai_istikomah" class="form-control"
                                                 placeholder="Masukkan Nilai Istikomah ">
                                         </div>
                                     </div>

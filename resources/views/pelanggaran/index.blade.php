@@ -67,6 +67,8 @@
                                 <th scope="col">NO</th>
                                 <th scope="col">NAMA PELANGGARAN</th>
                                 <th scope="col">SKOR</th>
+                                <th scope="col">JENIS PELANGGARAN</th>
+                                <th scope="col">Hukuman</th>
                                 <th scope="col">id</th>
                                 <th scope="col">AKSI</th>
                             </tr>
@@ -77,6 +79,25 @@
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->nama_pelanggaran }}</td>
                                     <td>{{ $item->skor_pelanggaran }}</td>
+                                    <td>
+                                        @if ($item->skor_pelanggaran <= 40)
+                                            Pelanggaran Ringan
+                                        @elseif ($item->skor_pelanggaran > 40 && $item->skor_pelanggaran <= 70)
+                                            Pelanggaran Sedang
+                                        @else
+                                            Pelanggaran Berat
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @php
+                                            $hukumanArray = explode(', ', $item->hukuman);
+                                        @endphp
+
+                                        @foreach ($hukumanArray as $key => $h)
+                                            {{ $key + 1 }}. {{ $h }} <br>
+                                        @endforeach
+
+                                    </td>
                                     <td>{{ $item->id }}</td>
                                     <td>
 
@@ -111,8 +132,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Skor Pelanggaran</label>
-                                            <input type="number" name="skor_pelanggaran" class="form-control"
-                                                placeholder="Masukkan Nilai skor pelanggaran">
+                                            <input type="number" max="100" name="skor_pelanggaran"
+                                                class="form-control" placeholder="Masukkan Nilai skor pelanggaran">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Jenis Hukuman</label>
+                                            <textarea name="hukuman"class="form-control"></textarea>
                                         </div>
 
 
@@ -153,7 +178,13 @@
                                         <div class="form-group">
                                             <label for="">Skor Pelanggaran</label>
                                             <input type="number" name="skor_pelanggaran" id="skor_pelanggaran"
-                                                class="form-control" placeholder="Masukkan Nilai skor pelanggaran">
+                                                max="100" class="form-control"
+                                                placeholder="Masukkan Nilai skor pelanggaran">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">Jenis Hukuman</label>
+                                            <textarea name="hukuman"class="form-control" id="hukuman"></textarea>
                                         </div>
 
                                     </div>
@@ -180,7 +211,7 @@
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({
                 columnDefs: [{
-                    target: 3,
+                    target: 5,
                     visible: false,
                     searchable: false,
                 }, ]
@@ -206,9 +237,10 @@
                 }
 
                 var data = table.row($tr).data();
-                $('#id').val(data[3]);
+                $('#id').val(data[5]);
                 $('#nama_pelanggaran').val(data[1]);
                 $('#skor_pelanggaran').val(data[2]);
+                $('#hukuman').val(data[4]);
 
 
                 $('#editForm').attr('action', '/pelanggaran-update');

@@ -17,6 +17,7 @@ class CreatePelanggaransTable extends Migration
             $table->id();
             $table->string('nama_pelanggaran');
             $table->integer('skor_pelanggaran');
+            $table->string('hukuman');
             $table->timestamps();
         });
     }

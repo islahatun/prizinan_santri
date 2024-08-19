@@ -107,6 +107,7 @@ class PelanggaranController extends Controller
         $this->validate($request, [
             'nama_pelanggaran' => 'required',
             'skor_pelanggaran' => 'required',
+            'hukuman' => 'required',
 
         ]);
         $data = $request->except('_token', '_method', 'id');
