@@ -267,6 +267,7 @@
                 $('#alasanIzinCreate').show();
             } else {
                 $('#alasanIzinCreate').hide();
+                $('#alasanIzinCreate').val(value);
 
             }
         }

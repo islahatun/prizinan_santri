@@ -26,18 +26,20 @@ class PerizinanController extends Controller
                 $query->where('orang_tua', Auth::user()->id);
             })->get();
 
-            $perizinan = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
+            $perizinan = Perizinan::whereHas('santri', function ($query) {
                 $query->where('orang_tua', Auth::user()->id);
             })->get();
+            $santri = Santri::where('orang_tua', Auth::user()->id)->get();
         } else {
             $count = Perizinan::whereNull('keterangan')->count();
             $countNotif = $count ? $count : 0;
             $perizinanData = Perizinan::whereNull('keterangan')->get();
             $perizinan = Perizinan::get();
+            $santri = Santri::all();
         }
         $perizinancount = Perizinan::count();
         $user = User::whereNotNull('ustad_id')->get();
-        $santri = Santri::all();
+
         $alasanIzin = [
             [
                 'alasan' => "Acara Pondok",
@@ -78,7 +80,7 @@ class PerizinanController extends Controller
                 return redirect('/perizinan');
             } catch (\Throwable $th) {
                 DB::rollBack();
-                dd($th);
+                // dd($th);
             }
         }
     }
@@ -125,7 +127,7 @@ class PerizinanController extends Controller
         $santricount = Santri::count();
         $perizinancount = Perizinan::count();
         $pelanggarancount = Perizinan::where('keterangan', '=', 'Ditolak')->count();
-        $user = Auth::user()->id;
+        $user = User::whereNotNull('ustad_id')->get();
         $santri = Santri::all();
         $perizinan = Perizinan::get();
         return view('pelaporan.index', ['perizinan' => $perizinan, 'santri' => $santri, 'user' => $user, 'santricount' => $santricount, 'perizinancount' => $perizinancount, 'pelanggarancount' => $pelanggarancount, 'countNotif' => $countNotif, 'perizinanData' => $perizinanData]);
@@ -147,10 +149,15 @@ class PerizinanController extends Controller
             //     return redirect('/pelaporan');
             // } else {
             try {
+                if ($request->user_id == null || $request->user_id == '') {
+                    $user_id = Auth::user()->id;
+                } else {
+                    $user_id = $request->user_id;
+                }
                 DB::beginTransaction();
                 $izindata->actual_tgl_balik = $request->input('actual_tgl_balik');
                 $izindata->keterangan = $request->input('keterangan');
-                $izindata->user_id = Auth::user()->id;
+                $izindata->user_id = $user_id;
                 $izindata->save();
 
                 $santri = Santri::findOrFail($izindata->santri_id);

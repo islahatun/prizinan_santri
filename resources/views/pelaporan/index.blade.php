@@ -146,7 +146,8 @@
                                                 <select name="perizinan_id" id="perizinan" class="form-control inputbox">
                                                     <option value="null">--pilih Santri--</option>
                                                     @foreach ($perizinan->where('actual_tgl_balik', null) as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->santri->nisn }} - {{ $item->santri->nama }}
+                                                        <option value="{{ $item->id }}">{{ $item->santri->nisn }} -
+                                                            {{ $item->santri->nama }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -170,14 +171,18 @@
                                             <input readonly type="date" value="{{ $today }}"
                                                 name="actual_tgl_balik" class="form-control">
                                         </div>
-                                        {{-- <div class="form-group">
-                                            <label for="">Tertanda</label>
-                                            <select name="user_id" id="" class="form-control inputbox">
-                                                @foreach ($user as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
+                                        @if (Auth::user()->role_id == 1)
+                                            <div class="form-group">
+                                                <label for="">Tertanda</label>
+                                                <select name="user_id" id="" class="form-control inputbox">
+                                                    <option value="null"></option>
+                                                    @foreach ($user as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+
                                         <div class="form-group">
                                             <label for="">Keterangan</label>
                                             <select class="form-select" name="keterangan"
