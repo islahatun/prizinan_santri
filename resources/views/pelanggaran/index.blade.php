@@ -68,9 +68,10 @@
                                 <th scope="col">NAMA PELANGGARAN</th>
                                 <th scope="col">SKOR</th>
                                 <th scope="col">JENIS PELANGGARAN</th>
-                                <th scope="col">Hukuman</th>
+                                <th scope="col">HUKUMAN</th>
                                 <th scope="col">id</th>
                                 <th scope="col">AKSI</th>
+                                <th scope="col">HUKUMAN</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,10 +93,13 @@
                                         @php
                                             $hukumanArray = explode(', ', $item->hukuman);
                                         @endphp
-
-                                        @foreach ($hukumanArray as $key => $h)
-                                            {{ $key + 1 }}. {{ $h }} <br>
-                                        @endforeach
+                                        @if ($item->hukuman == null)
+                                            -
+                                        @else
+                                            @foreach ($hukumanArray as $key => $h)
+                                                {{ $key + 1 }}. {{ $h }} <br>
+                                            @endforeach
+                                        @endif
 
                                     </td>
                                     <td>{{ $item->id }}</td>
@@ -106,6 +110,7 @@
                                             <button class="btn btn-danger" type="submit"> Hapus</button>
                                         </form>
                                     </td>
+                                    <td>{{ $item->hukuman }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -214,6 +219,10 @@
                     target: 5,
                     visible: false,
                     searchable: false,
+                }, {
+                    target: 7,
+                    visible: false,
+                    searchable: false,
                 }, ]
 
             });
@@ -240,7 +249,7 @@
                 $('#id').val(data[5]);
                 $('#nama_pelanggaran').val(data[1]);
                 $('#skor_pelanggaran').val(data[2]);
-                $('#hukuman').val(data[4]);
+                $('#hukuman').val(data[7]);
 
 
                 $('#editForm').attr('action', '/pelanggaran-update');
