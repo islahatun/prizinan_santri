@@ -100,36 +100,83 @@
                     <div class="placebutton m-3">
                     </div>
                 </div>
-                <div class="mt-2" style="max-width: 100%;">
-                    <h3 class="text-center">DATA PERIZINAN</h3>
-                    <table id="tabel1" class="table table-bordered border-dark">
-                        <thead>
+                <divclass="mt-2" style="max-width: 100%;">
+                <h3 class="text-center">DATA PELANGGARAN </h3>
+                <table id="tabel2" class="table table-bordered border-dark">
+                    <thead>
+                        <tr style="align-content: center">
+                            <th scope="col">NO</th>
+                            <th scope="col">NAMA PELANGGARAN</th>
+                            <th scope="col">SKOR</th>
+                            <th scope="col">JENIS PELANGGARAN</th>
+                            <th scope="col">HUKUMAN</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pelanggaran as $item)
                             <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">NISN</th>
-                                <th scope="col">NAMA</th>
-                                <th scope="col">TANGGAL IZIN</th>
-                                <th scope="col">TANGGAL BALIK</th>
-                                <th scope="col">ALASAN IZIN</th>
-                                <th scope="col">TERTANDA</th>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $item->nama_pelanggaran }}</td>
+                                <td>{{ $item->skor_pelanggaran }}</td>
+                                <td>
+                                    @if ($item->skor_pelanggaran <= 40)
+                                        Pelanggaran Ringan
+                                    @elseif ($item->skor_pelanggaran > 40 && $item->skor_pelanggaran <= 70)
+                                        Pelanggaran Sedang
+                                    @else
+                                        Pelanggaran Berat
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                        $hukumanArray = explode(', ', $item->hukuman);
+                                    @endphp
+                                    @if ($item->hukuman == null)
+                                        -
+                                    @else
+                                        @foreach ($hukumanArray as $key => $h)
+                                            {{ $key + 1 }}. {{ $h }} <br>
+                                        @endforeach
+                                    @endif
+
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($perizinan as $item)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $item->santri?$item->santri->nisn:"" }}</td>
-                                    <td>{{ $item->santri?$item->santri->nama:"" }}</td>
-                                    <td>{{ $item->tgl_pulang }}</td>
-                                    <td>{{ $item->tgl_balik }}</td>
-                                    <td>{{ $item->alasan_izin }}</td>
-                                    <td>{{ $item->user ? $item->user->name : '' }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+            <div class="mt-2" style="max-width: 100%;">
+                <h3 class="text-center">DATA PERIZINAN</h3>
+                <table id="tabel1" class="table table-bordered border-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">NO</th>
+                            <th scope="col">NISN</th>
+                            <th scope="col">NAMA</th>
+                            <th scope="col">TANGGAL IZIN</th>
+                            <th scope="col">TANGGAL BALIK</th>
+                            <th scope="col">ALASAN IZIN</th>
+                            <th scope="col">TERTANDA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($perizinan as $item)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $item->santri ? $item->santri->nisn : '' }}</td>
+                                <td>{{ $item->santri ? $item->santri->nama : '' }}</td>
+                                <td>{{ $item->tgl_pulang }}</td>
+                                <td>{{ $item->tgl_balik }}</td>
+                                <td>{{ $item->alasan_izin }}</td>
+                                <td>{{ $item->user ? $item->user->name : '' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -151,6 +198,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({});
+
+            var table = $('#tabel2').DataTable({});
         });
     </script>
 @endsection
