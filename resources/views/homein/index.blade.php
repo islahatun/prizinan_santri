@@ -198,7 +198,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#tabel1').DataTable({});
-
             var table = $('#tabel2').DataTable({});
         });
     </script>

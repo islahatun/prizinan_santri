@@ -244,13 +244,11 @@
                 if ($($tr).hasClass('child')) {
                     $tr = $tr.prev('.parent');
                 }
-
                 var data = table.row($tr).data();
                 $('#id').val(data[5]);
                 $('#nama_pelanggaran').val(data[1]);
                 $('#skor_pelanggaran').val(data[2]);
                 $('#hukuman').val(data[7]);
-
 
                 $('#editForm').attr('action', '/pelanggaran-update');
                 $('#editModal').modal('show');

@@ -14,7 +14,6 @@ class HomeinController extends Controller
 {
     public function index()
     {
-
         if (Auth::user()->role_id == 3) {
             $count = Perizinan::whereNotNull('keterangan')->whereHas('santri', function ($query) {
                 $query->where('orang_tua', Auth::user()->id);
