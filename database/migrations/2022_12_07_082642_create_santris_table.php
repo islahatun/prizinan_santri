@@ -26,7 +26,6 @@ class CreateSantrisTable extends Migration
             $table->string('no_telepon', 15);
             $table->date('tgl_masuk');
             $table->enum('status', ['bpulang', 'tbpulang'])->required();
-git 
             $table->timestamps();
         });
     }
